@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>Gay Sugar Daddy Gay Sugar Baby Video Chat Live</title>
+    <meta name="description" content="Gay Sugar Daddy Gay Sugar Baby Video Chat Live" />
+    <meta name="keywords" content="Gay Sugar Daddy Gay Sugar Baby Video Chat Live" />
+ 
+    <link rel="stylesheet" href="https://cdn.webrtc-experiment.com/style.css">
+    <link rel="stylesheet" href="https://txt.am/rtc/demos/css/im.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
+	<link href="https://gaysugardaddyfinder.com/assets/css/magic.css" rel="stylesheet">
+	<script src="assets/js/jquery.js"></script>	
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
+	<script src="assets/js/videoRTC.js"></script>
+	<script src="assets/js/adapter.js"></script>
+	<script src="https://gaysugardaddyfinder.com/assets/js/socket.io.js"></script>
+	<script src="https://txt.am/rtc/demos/js/IceServersHandler.js"></script>	
+
+	<body>
+        <div id="timer_content" style="display:none;position:fixed;bottom:75px;left:0;right:0;margin:auto;z-index:9999;width:80%;text-align:center"></div>
+        <div id="record" style="position:fixed;top:35px;left:0;right:0;margin:auto;z-index:9999;width:330px"></div>
+		<section class="experiment" style="display:none">
+            <div class="make-center">
+                <input type="text" id="room-id" value="abcdef" autocorrect=off autocapitalize=off size=20>
+                <button id="open-room">Open Room</button>
+                <button id="join-room">Join Room</button>
+                <button id="open-or-join-room">Auto Open Or Join Room</button>
+                <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
+            </div>
+        </section>
+        <div id="j_outer"></div>
+		<div id="loggedon" onclick="disableReversePermissions()" style="position:absolute;z-index:9999999999999999999999999;width:65px;text-align:center;top:-10px;right:-10px"></div>
+		<div id="bar" class="bar">
+			<table style="width:100%!Important;background:#fff">
+				<tr id="mr" style="display:none;opacity:0.5">
+					<td style="text-align:left;border:none">
+						<div style="width:100%;height:95px;background:;text-align:center;background:#fff">
+							<div id="message" contentEditable></div>
+						</div>
+					</td>
+					<td style="min-width:70px;max-width:70px;width:70px!Important;text-align:right;border:none">
+						<img id="send" src="https://txt.am/assets/img/zzz_send.png" onclick="msgSend()">
+					</td>
+				</tr>
+				<tr>
+					<td colspan=2>
+						
+					</td>
+				</tr>
+				<tr>
+					<td colspan=2>
+						<div id="holder_bar" style="position:absolute;bottom:-55px;z-index:9999999999999999999999999999;width:100%" onmouseover="up(this)" onmouseout="down(this)">
+						<img style="height:25px;display:none;position:absolute;bottom:70px;left:0;right:0;margin:auto" id="hide" onclick="down(document.all.holder_bar,500)" src="https://txt.am/assets/img/hide.png">
+						<img src="https://txt.am/assets/img/hd63.png" id="hd63" onclick="record()" style="width:65px;margin:-2px;margin-bottom:5px" class="www_box">
+						<img src="https://txt.am/assets/img/hd61.png" id="hd61" onclick="toggle(this);initMsg()" style="width:65px;margin:-2px;margin-bottom:5px" class="www_box">
+						<img src="https://txt.am/assets/img/hd64_on.png" id="hd64" onclick="toggle(this);toggle_timer()" style="width:65px;margin:-2px;margin-bottom:5px" class="www_box">
+						<img src="https://txt.am/assets/img/hd65.png" id="hd65" onclick="toggle(this);toggle_local()" style="width:65px;margin:-2px;margin-bottom:5px" class="www_box">
+						<img src="https://txt.am/assets/img/hd66.png" id="hd66" onclick="toggle(this);toggle_remote()" style="width:65px;margin:-2px;margin-bottom:5px" class="www_box">					
+						<img src="https://txt.am/assets/img/hd62.png" id="hd62" style="width:65px;margin:-2px;margin-bottom:5px" class="www_box">					
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+        <div id="permModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;z-index:99999999999999999999;background:#333"></div>
+		<div class="modal fade" id="jm" tabindex="-1" role="dialog" aria-labelledby="msgHeader" aria-hidden="true" style="position:absolute;z-index:99999999999999999999999999">
+			<div class="modal-dialog">
+				<div class="modal-body">
+					<div class="modal-content">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img style="margin:10px" src="https://txt.am/assets/img/new_close.png"></button>
+						<div class="modal-body" id="msgBody" style="width:100%;height:100%;object-fit:cover;padding:10px;margin:0">
+							<video id="mb"></video>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        <div id="videos-container"></div>
+		<video id="video-preview" loop></video>
+
+       <script>
+		var rec=false
+		var socket
+		var event	
+		var killPerm=null
+		var old
+		var local_id, remote_id
+		var tx
+		var img
+		var inChat=false
+		var vd
+		var remoteStream, selector,video
+		var mc=0;
+		var mt=1;
+		var m_arr=[]
+		var md
+		var j_out
+		var id
+		var clr=0
+		var bg=[]
+		var mediaElement
+		var m=[];
+		var i=0;
+		var sn=4;
+		var connection
+		var videoConstraints
+		var ms=0,tsc,tms,secs=0,mins=0,tms,tmr,upd,m,s,n,s_ms,s_secs,s_mins
+		var winH, winW
+		var mw, mh
+		var arrMedia=[]
+		var arrLocal=[]
+		var arrRemote=[]
+		var arrRecorded=[]
+		var objData=[]
+
+		function up(obj) {
+			setTimeout(function(){
+				obj.className='magictime slideUp'
+				obj.style.marginBottom='-15px'
+				$('#hide').show()
+			},500)
+		}
+		
+		function down(obj,x) {
+			if (!x) var x=60000
+			setTimeout(function(){
+				obj.className='magictime return'
+				obj.style.marginBottom='0'
+				$('#hide').hide()
+			},x)
+		}
+	
+		function buildMediaObject(type,stream,mediaElement,blobURL,id) {
+			if (type=='local') {
+							arrMedia['local']={	'stream'		:	stream,
+								'mediaElement'  :	mediaElement,
+								'blobURL'		:	blobURL,
+								'id'			:	id
+							}
+			} else if (type=='remote') {
+							arrMedia['remote']={	'stream'		:	stream,
+								'mediaElement'  :	mediaElement,
+								'blobURL'		:	blobURL,
+								'id'			:	id
+							}
+			} else {
+							arrMedia['recorded']={	'stream'		:	stream,
+								'mediaElement'  :	mediaElement,
+								'blobURL'		:	blobURL,
+								'id'			:	id
+							}
+			}
+		}
+
+		jQuery(document).on('keyup',function(evt) {
+			if (evt.keyCode == 27) {
+				if (old) document.getElementById(old).style.opacity='0'
+			}
+		});
+		
+		document.onkeypress = function (e) {
+			e = e || window.event;
+			if(e.keyCode==13) {
+				e.preventDefault();
+				$('#send').click();
+				$('#message').text('')
+			}
+		};
+		
+		bg=['ivory','lavenderblush','papayawhip','lavender','PaleTurquoise','PeachPuff','PowderBlue','SeaShell','WhiteSmoke']
+		function jm(mesg) {
+			id=Math.floor(Math.random()*1000000000)
+			if (window_width() > 420) document.getElementById('j_outer').style.width='100%'
+			j_out = document.getElementById('j_outer')
+			md=document.createElement('div')
+			md.innerHTML=mesg+'<img src="https://txt.am/assets/img/wb52.png" style="width:25px;position:absolute;right:5px;top:5px" onclick="document.all.'+id+'.style.display=\'none\'"><img src="https://txt.am/assets/img/reply.png" style="width:40px;position:absolute;right:5px;bottom:5px" onclick="reply()">'
+			md.id=id
+			md.className='www_box2 jmsg'
+			j_out.style.textAlign='center'
+			j_out.appendChild(md)
+			md.style.display='block'
+			md.style.background=bg[clr]
+			if (clr==9) clr=0
+				else clr++
+			setInterval('removeIt(' + id + ')', 2500 * mt)
+			mt++
+		}
+		function removeIt(id) {
+			$('#'+id).addClass('magictime fadeOut')
+			$('#'+id).hide()
+		}
+		function reply(){
+			initMsg()
+		}
+		function toggleR(ob) {
+			if (ob.src=='https://txt.am/assets/img/'+ob.id+'_on.png')
+				ob.src='https://txt.am/assets/img/'+ob.id+'.png'
+			else
+				ob.src='https://txt.am/assets/img/'+ob.id+'_on.png'
+		}
+		
+		function toggle(ob) {
+			if (ob.src=='https://txt.am/assets/img/'+ob.id+'_on.png')
+				ob.src='https://txt.am/assets/img/'+ob.id+'.png'
+			else
+				ob.src='https://txt.am/assets/img/'+ob.id+'_on.png'
+		}
+		
+		function disableReversePermissions () {
+			killPerm=true
+		}		
+
+		function jmsg(msg) {
+			$.confirm({
+				theme: 'modern',
+				boxWidth: '380px',
+				useBootstrap: false,
+				title: 'Video Chat Request!',
+				content: msg,
+				buttons: {
+					ok: {
+						text: 'YES',
+						btnClass: 'btn-success',
+						keys: ['enter'],
+						action: function(){
+							inChat=true
+							sendMsg('*.*')
+							return true
+						}
+					},
+					no: {
+						text: 'NO',
+						btnClass: 'btn-warning',
+						keys: ['escape'],
+						action: function(){
+							inChat=false
+							sendMsg('*.**');
+							sendMsg('<span style="font-size:24px;color:red">Sorry, ' + getCookie('login')+' has declined the request to chat at this time. You may try again, later.</span>');
+							no();
+							return true;
+						}
+					},
+						decline: {
+						text: 'NO with NOTE',
+						btnClass: 'btn-warning',
+						keys: ['enter', 'shift'],
+						action: function(){
+							inChat=false
+							$.confirm({    title: 'Prompt!',
+								content: '' +
+								'<form action="" class="formName">' +
+								'<div class="form-group">' +
+								'<label>Enter something here</label>' +
+								'<input id="x_msg" type="text" placeholder="Your Message" class="name form-control" required />' +
+								'</div>' +
+								'</form>',
+								buttons: {
+									formSubmit: {
+										text: 'Send Message',
+										btnClass: 'btn-info',
+										action: function () {
+											var msg = this.$content.find('#x_msg').val();
+											if(!msg){
+												$.alert('provide a valid message');
+											} else {
+												sendMsg('*.**');
+												sendMsg('<span style="font-size:24px;color:red">Sorry, ' + getCookie('login')+' has declined the request to chat, but sends this message for you:</span><br><span style="font-size:24px;color:#333">'+msg+'</span>');
+												no();
+											}
+											$('.jconfirm').hide()												
+											return false;
+										}
+									},
+									cancel: function () {
+										$('.jconfirm').hide()												
+										return false;
+									},
+								}});
+						}
+					},
+					block: {
+						text: 'BLOCK',
+						btnClass: 'btn-danger',
+						keys: ['escape'],
+						action: function(){
+							inChat=false
+							sendMsg('*.**');
+							no();
+							$('.jconfirm').hide()												
+							return false;
+						}
+					}
+
+				}
+			});
+		}
+		//USAGE AND LOGGING IN, INVITING ETC
+		// User that is invited to Video chat is detected and processed here. 
+		// If both to and from are set, we know that this is an invited user and he came here by clicking some link in an Email, IM or SMS
+		if (qs('to') && qs('from')) {
+			setCookie('login', qs('from'))
+			setCookie('to', qs('to'))
+			setCookie('active', qs('to'))
+			setTimeout(function(){
+				vim(qs('to'))
+			},5000)
+		
+		// When a member requests video chat with another member by clicking on video icon.
+		// When clicked, we need to prepare and send a message to all 3 venues (Email, IM and SMS)
+		// Invite message that is sent contains a link to this page that has both their 'login' and 'to' parameters set.
+		 } else if (qs('vim') && qs('from')) {
+			setCookie('login',qs('from'))
+			setCookie('to',qs('vim'))
+			setCookie('active', qs('vim'))
+			//And just wait for the user you invited to click on the link you sent via IM, Email and SMS. When they click on the link
+			//They will be brought to this page and will be processed as above
+		} else {
+			if (qs('from')) {
+				setCookie('login',qs('from'))
+			}
+		}
+	
+		connection = new videoRTC();
+		connection.userid=getCookie('login')
+        connection.session = {
+            audio: true,
+            video: true
+        };
+
+		connection.sdpConstraints.mandatory = {
+			OfferToReceiveAudio: true,
+			OfferToReceiveVideo: true
+		};
+
+		connection.videosContainer = document.getElementById('videos-container');
+		connection.socketURL ='https://txt.am:9001/';
+		connection.socketCustomEvent = 'custom-socket-event';
+		connection.socketMessageEvent = 'video-conference-demo';
+		connection.enableScalableBroadcast = true;
+		connection.maxRelayLimitPerUser = 1;
+		connection.autoCloseEntireSession = false;
+        connection.dontCaptureUserMedia = false;
+		connection.maxParticipantsAllowed = 1;
+
+		connection.connectSocket(function(socket) {
+			$('#loggedon').hide()
+			socket.on(connection.socketCustomEvent, function(message) {
+				if (message.customMessage.substr(0,1)=='*') {
+					if (message.customMessage=='*.*') {
+						$('#'+getCookie('to')).hide()
+						$('#loggedon').hide()
+					} else if (message.customMessage=='*.file') {
+						connection.disconnectWith(getCookie('active'));
+						connection.join(getCookie('active'))
+						<!-- location.reload() -->
+					}
+						$('#permModal').hide()
+						$('#'+remote_id).show()
+						$('#j_outer').show()
+				} else {
+					document.getElementById('timer_content').style.display='none'					
+					document.getElementById(local_id).style.display='none'					
+					document.getElementById('hd65').src='https://txt.am/assets/img/hd65_on.png'
+					jm(message.customMessage);
+				}
+			});
+			sn=(sn==2)?4:2;
+			document.getElementById('send').onclick = function() {
+				if ($('#message').text() !=='') customMessage = $('#message').text()
+					socket.emit(connection.socketCustomEvent, {
+						sender: connection.userid,
+						customMessage: customMessage
+					});
+				$('#message').text('')
+			}
+		});
+					
+		connection.open(getCookie('login'), function() {
+			console.log('Connected opened by ' + getCookie('login'))
+			console.log('Waiting for ' + getCookie('to') + ' to join')
+		});	
+		
+		<!-- if (getCookie('active') !=='') { -->
+			<!-- connection.join(getCookie('active')) -->
+			<!-- connection.session = { -->
+				<!-- audio: true, -->
+				<!-- video: true -->
+			<!-- } -->
+		<!-- } -->
+			
+		connection.onstream = function(event) {
+			var width = parseInt(connection.videosContainer.clientWidth / 2) - 20;
+			var mediaElement = getMediaElement(event.mediaElement, {
+				title: event.userid,
+				buttons: ['full-screen'],
+				width: width,
+				showOnMouseEnter: false
+			});
+
+			connection.videosContainer.appendChild(mediaElement);
+
+			setTimeout(function() {
+				mediaElement.media.play();
+			}, 5000);
+
+			mediaElement.id = event.streamid;
+		if(event.type=='local') {
+			local_id=event.streamid
+			console.log(event.type + ' stream added')
+		} else {
+			remoteBlob=event.blobURL
+			$('#loggedon').hide()
+			remote_id=event.streamid
+			$('#'+remote_id).show()
+			
+			console.log($('video#'+remote_id))
+			console.log(event.type + ' stream added')
+			Users = connection.getAllParticipants();
+			console.log(Users[0])
+			var message = '<span style="font-size:24px">Incoming call from '+ Users[0] + '</span><div><img src="https://txt.am/assets/img/phone_calling.gif"></div>'
+			if (!killPerm) {
+				if (getCookie('active') !== Users[0]) {
+					setCookie('active', Users[0])
+					jmsg(message)
+				}
+			}
+		}		
+		if (connection.preRecorededStream) {
+			if (connection.preRecorededStream.active===true) {
+				recorded_id=connection.preRecorededStream.id
+				console.log(connection.preRecorededStream)
+			}
+		}
+
+		if (event.type=='remote') {
+			remoteStream=connection.getRemoteStreams()[0]
+			document.getElementById(local_id).style.cssText='position:absolute;top:0;left:0;height:150px!Important;width:150px!Important;border-radius:150px!Important;z-index:999;border:10px dotted red;margin:10px'
+			if (connection.preRecorededStream) {
+				document.getElementById(local_id).style.cssText='top: 0px; left: 0px; position: absolute !important; width: 100% !important; height: 100% !important; max-height: 100% !important; object-fit:cover;'
+			}
+		}        
+	};
+
+	connection.onstreamended = function(event) {
+		var mediaElement = document.getElementById(event.streamid);
+		if(mediaElement) {
+			mediaElement.parentNode.removeChild(mediaElement);
+		}
+		$('#loggedon').show()
+		$('#'+local_id).show()
+		document.getElementById('j_outer').style.display='none'
+	};
+	vim()
+
+	function afterEach(setTimeoutInteval, numberOfTimes, callback, startedTimes) {
+		startedTimes = (startedTimes || 0) + 1;
+		if (startedTimes >= numberOfTimes) return;
+
+		setTimeout(function() {
+			callback();
+			afterEach(setTimeoutInteval, numberOfTimes, callback, startedTimes);
+		}, setTimeoutInteval);
+	}
+
+	connection.onunmute = function(event) {
+		if (event.isAudio || event.session.audio) {
+			event.mediaElement.volume = 0;
+			afterEach(200, 5, function() {
+				event.mediaElement.volume += .20;
+			});
+		}
+	};
+	connection.onRoomFull = function(roomid) {
+		connection.closeSocket();
+		connection.attachStreams.forEach(function(stream) {
+			stream.stop();
+		});
+		alert('Room is full.');
+	};
+
+	function voice(to,from,txt) {
+		if (!cnf) var cnf='SMS Sent'
+		var url = 'https://sugardaddydays.com/voice/call.php?to=' + to + '&from=' + from + '&message=' +  txt + '&message_type=INDEX_NOTIFY_CODE'
+		var request = $.ajax({
+			url: url, 
+			type: "GET",
+			dataType: "jsonp",
+			cache: false,
+			success: function(msg) {
+			}
+		})
+	}	
+
+	function sms(mobile,to_mobile) {
+		//send email as well
+		//and voice call
+		var url = 'https://txt.am/gateway/sms.php?to=' + to_mobile + '&from='+getCookie('long_code')+'&msg=https://gaysugardaddyfinder.com/video&login='+to_mobile+'&to2='+mobile+'&to3=has invited you to a Video Chat. Click below to join the call.'
+		console.log(url)
+		var request = $.ajax({
+			url: url, 
+			type: "GET",
+			dataType: "jsonp",
+			cache: false,
+			success: function(msg) {
+				
+			}
+		})
+	}	
+
+	
+	function vim(who) {
+		$('#loggedon').hide()
+		if (getCookie('active')==who) {
+			connection.join(who)
+		} else  {
+			setCookie('active',who)
+			connection.join(who, function() {
+				document.getElementById('permModal').style.background='none'
+				$('#permModal').show()
+				$('#permModal').html('<div style="position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;width:300px;height:100px;background:#fff;padding:30px;opacity:0.7;border-radius:6px;"><div><img src="assets/images/phone_calling.gif" style="width:120px;position:absolute;top:0px;left:0px"></div><div style="font-size:0.7em;position:absolute;left:35%;top:35px;font-family:Open Sans!Important;">Calling, Please wait...</div></div>')
+				mediaElement.style.cssText='font-family:Open Sans!Important;position:absolute;top:0;left:0; height:150px!Important; width:150px!Important; border-radius:150px!Important;z-index:999; border:10px dashed red;margin:10px;display:'
+				setTimeout(function(){
+					if (remote_id) {
+						document.getElementById(remote_id).style.display='none'
+					} else {
+						setTimeout(function(){
+							if (remote_id) {
+								document.getElementById(remote_id).style.display='none'
+							} else {
+								
+							}
+						},1000)
+					}
+				},1000)
+				document.getElementById('loggedon').style.display='none'
+			});
+		}
+	}
+	
+
+	function sendMsg(txt) {
+		$('#message').text(txt)
+		$('#send').click()
+	}
+
+	tx=setTimeout('detectUser()', 3000)
+	function detectUser() {
+		if (inChat) {
+			clearTimeout(tx)
+			return
+		}
+		connection.checkPresence(getCookie('to'), function(isRoomExists, to) {
+			if(isRoomExists) {
+				if (img==null) {
+					var udiv=document.createElement('div')
+					img=document.createElement('img')
+					udiv.className='www_box5'
+					udiv.style.cssText='font-size:14px;margin-top:-10px;background:#fff;opacity:0.8'
+					udiv.innerText=to
+					document.getElementById('loggedon').appendChild(img)
+					document.getElementById('loggedon').appendChild(udiv)
+					img.outerHTML='<img src="'+to+'.png" onclick="vim(\''+to+'\')" style="width:75px;opacity:1">'
+					img.id=to
+				}
+				if (!remote_id) document.getElementById('loggedon').style.display='block'
+			} else {
+				if (img) {
+					document.getElementById('loggedon').style.display='none'
+				}
+			}
+			clearTimeout(tx)
+			tx=setTimeout('detectUser()', 3000)
+		});
+	}
+
+	function toggle_local() {
+		if ((document.getElementById(local_id).style.display=='block')||(document.getElementById(local_id).style.display=='')) {
+			document.getElementById(local_id).style.display='none'
+		} else {
+			document.getElementById(local_id).style.display='block'
+		}
+	}
+		
+	function toggle_remote(objId) {
+		if (!document.getElementById(remote_id)) {
+			document.getElementById('hd66').src='https://txt.am/assets/img/hd66_on.png'
+			$.alert({		
+				title: '<b>ERROR - NO REMOTE VIDEO</b>',
+				content: 'No remote Video found! You must connect to a remote video in order to toggle it off or on',
+				type: 'red',
+				typeAnimated: true,							
+				buttons: {
+					confirm:{
+							text: 'Ok',
+							btnClass: 'btn-red',
+							action: 
+								function () {
+									setTimeout(function(){
+										document.getElementById('hd66').src='https://txt.am/assets/img/hd66.png'
+									},1000)
+								}
+							
+						}
+					}
+				})
+			return
+			
+		} else {
+			if ((document.getElementById(remote_id).style.display=='block')||(document.getElementById(remote_id).style.display=='')) {
+				document.getElementById(remote_id).style.display='none'
+			} else {
+				document.getElementById(remote_id).style.display='block'
+			}
+		}
+	}
+		
+	function initMsg() {
+		if (document.getElementById('send').style.display=='block') {
+			document.getElementById('send').style.display='none'
+			document.getElementById('mr').style.display='none'
+		} else {
+			document.getElementById('timer_content').style.display='none'
+			document.getElementById('send').style.display='block'
+			document.getElementById('mr').style.display='block'
+		}
+	}
+	function al(){
+		alert()
+	}
+	function hangUp() {
+		setCookie('active','')
+		setCookie('to','')
+	}
+	var remoteBlob
+	
+
+	var tr
+	function record() {
+		if (rec===true) {
+			clearInterval(tr)
+			rec=false
+			tr=null
+			document.getElementById('hd63').src='https://txt.am/assets/img/hd63.png'
+			stop()
+			return
+		} else {
+			rec=true
+			if (!remoteStream) {
+					$.alert({		
+						title: '<b>ERROR - NO REMOTE USER</b>',
+						content: 'In order to start recording a remote feed please connect to a remote user first',
+						type: 'red',
+						typeAnimated: true,							
+						buttons: {
+							confirm:{
+								text: 'Ok',
+								btnClass: 'btn-red',
+								action: 
+									function () {
+										setTimeout(function(){
+											document.getElementById('hd63').src='https://txt.am/assets/img/hd63.png'
+										},1000)
+									}
+								}
+							}
+						})
+				setTimeout(function(){
+						document.getElementById('hd63').src='https://txt.am/assets/img/hd63.png'
+					},
+				1500
+				)
+				rec=false
+				return false;
+			}
+			timer(0,0,0,true)
+			document.getElementById('timer_content').style.display='block'
+			tr=setInterval('togR()', 500)
+			recorder = new MRecordRTC();
+			recorder.addStream(remoteStream);
+			recorder.mediaType = {
+			   audio: false, // or StereoAudioRecorder
+			   video: true, // or WhammyRecorder
+			   gif: false    // or GifRecorder
+			};
+			recorder.mimeType = {
+				audio: 'audio/wav',
+				video: 'video/webm'
+			};
+			recorder.autoWriteToDisk = true;
+			recorder.startRecording();
+		}
+	}
+	function togR() {
+	if (rec===false) return false
+		if (document.getElementById('hd63').src=='https://txt.am/assets/img/hd63.png') {
+			document.getElementById('hd63').src='https://txt.am/assets/img/hd63_red.png'
+		} else {
+			document.getElementById('hd63').src='https://txt.am/assets/img/hd63.png'
+		}
+	}
+			
+	function stop() {
+		document.getElementById('timer_content').style.display='none'
+		rec=false
+		if (recorder==undefined) return false
+		recorder.stopRecording(function(url, type) {
+			recorder.save({
+				video: 'uploads/xxx.webm'
+			});				
+			recorder.writeToDisk();
+	})}
+	
+
+
+	function screen_dimensions() {
+		var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+		var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+		return new Array(w, h)
+	}
+	
+	function window_height() {
+		if (document.body) {
+		 winH = document.body.offsetHeight;
+		}
+
+		if (document.compatMode=='CSS1Compat' &&
+			document.documentElement &&
+			document.documentElement.offsetHeight ) {
+			winH = document.documentElement.offsetHeight;
+			return winH
+		}
+
+		if (window.innerHeight && window.innerHeight) {
+			 winH = window.innerHeight;
+			 return winH;
+		}
+	}		
+		
+	function window_width() {
+		if (document.body) {
+		 winW = document.body.offsetWidth;
+		}
+
+		if (document.compatMode=='CSS1Compat' &&
+			document.documentElement &&
+			document.documentElement.offsetWidth ) {
+			winW = document.documentElement.offsetWidth;
+			return winW
+		}
+
+		if (window.innerWidth && window.innerWidth) {
+			 winW = window.innerWidth;
+			 return winW;
+		}
+	}
+
+	setTimeout(function(){
+		if (window_width()>420) {
+				document.getElementById('bar').style.height=((window_width()/6))+100+'px'
+				document.getElementById('bar').style.cssText='position:absolute;left:0;bottom:0;width:100%'
+		}
+	},100)
+
+	
+	function change_channel() {
+		pause_timer()
+		document.getElementById('timer_content').style.display='none'
+		document.getElementById('broadcast-id').style.display='block'
+		document.getElementById('btn-broadcast-id').style.display='block'
+	}
+
+	function set_channel(){
+		location.reload()
+	}
+
+	function pause_timer(){
+		s_ms=ms;
+		s_mins=mins;
+		s_secs=secs;
+		clearTimeout(tms);
+		clearTimeout(secs);
+	}
+	function resume_timer(){
+		s_ms=ms;
+		s_mins=mins;
+		s_secs=secs;
+	}
+	
+	function timer(mins,secs,ms,action) {
+		if (mins===false) {
+			action=false
+			clearTimeout(tms)
+			clearTimeout(tsc)
+			clearTimeout(upd)
+			mins=0
+			return
+		} else if (mins===true) {
+			action=true
+			mins=0
+		} else {
+			if (!mins) mins=0;
+		}
+		if (!secs) secs=0;
+		if (!ms) ms=0;
+		m=(ms<10) ? '0' + (ms*1) : ms*1;
+		s=(secs<10) ? '0' + (secs*1) : secs*1;
+		n=(mins<10) ? '0' + (mins*1) : mins*1;
+		s=s+''; m=m+''; n=n+'';
+		start:
+		if (ms==99) {
+			clearTimeout(tms);
+			ms=0;
+			if (secs==59) {
+				clearTimeout(tsc); 
+				secs=0;
+				if (mins<99) {
+					mins++
+				} else {
+					clearTimeout(tms);
+					mins=0;
+				}
+			} else {
+				secs++
+			}
+		} else {
+			ms++
+			upd=setTimeout(function(){
+				tmr='<img style="width:20px" src="https://txt.am/assets/img/' + (n.substring(0,1)*1) + '.png"><img style="width:20px" src="https://txt.am/assets/img/' + (n.substring(1,2)*1) + '.png"><img style="width:20px" src="img/32.png">' + '<img style="width:20px" src="https://txt.am/assets/img/' + (s.substring(0,1)*1) + '.png"><img style="width:20px" src="https://txt.am/assets/img/' + (s.substring(1,2)*1) + '.png"><img style="width:20px" src="img/32.png">' + '<img style="width:20px" src="https://txt.am/assets/img/' + (m.substring(0,1)*1) + '.png"><img style="width:20px" src="https://txt.am/assets/img/' + (m.substring(1,2)*1) + '.png">'
+				document.getElementById('timer_content').innerHTML=tmr;
+			},0.01)
+		}
+		if (action===false) {
+			clearTimeout(tms)
+			clearTimeout(tsc)
+			clearTimeout(upd)
+			return
+		}
+		tms=setTimeout(function(){
+			if (action===true)
+				timer(mins,secs,ms,action)
+		},10)
+	}
+	if (window_width() < 420) {
+		document.getElementById('hd61').style.width=window_width()/6 + 'px'
+		document.getElementById('hd62').style.width=window_width()/6 + 'px'
+		document.getElementById('hd63').style.width=window_width()/6 + 'px'
+		document.getElementById('hd64').style.width=window_width()/6 + 'px'
+		document.getElementById('hd65').style.width=window_width()/6 + 'px'
+		document.getElementById('hd66').style.width=window_width()/6 + 'px'
+	}
+        <!-- setTimeout(function(){ -->
+			<!-- document.getElementById(remote_id).outerHTML="<video src='"+remoteBlob+"' id='"+remote_id+"' onclick='alert()' class='video'>" -->
+		<!-- },7000)  -->
+    var rid     
+	document.getElementById('hd62').onclick = function(ev) {
+		rid=ev.id
+		console.log(rid)
+		connection.dontCaptureUserMedia = true;
+		selector = new FileSelector();
+		selector.accept = '*.webm;*.mp4;*.mp3;*.wav'; // webm or mp4 or mp3 or wav or ogg
+		selector.selectSingleFile(function(file) {
+			if(file.name.search(/.webm|.mp3|.mp4|.wav|.mkv/g) === -1) {
+				alert('Please select either WebM or Mp3 file.');
+				return;
+			}
+
+			video = document.createElement('video');
+			video.loop = true;
+			video.src = URL.createObjectURL(file);
+			video.play();
+			setTimeout(function() {
+			video.play();
+			   try {
+					if('captureStream' in video) {
+						connection.preRecorededStream = video.captureStream(15);
+					}
+					else if('mozCaptureStream' in video) {
+						connection.preRecorededStream = video.mozCaptureStream(15);
+					}
+					else if('webkitCaptureStream' in video) {
+						connection.preRecorededStream = video.webkitCaptureStream(15);
+					}
+				}
+				catch(e) {
+					connection.preRecorededStream = null;
+				}
+
+				if(!connection.preRecorededStream) {
+					return;
+				}
+				// attach pre-recorded steam
+				connection.attachStreams[0]=connection.preRecorededStream;
+				connection.onstream({
+					userid: rid,
+					extra: connection.extra,
+					type: 'local',
+					stream: connection.preRecorededStream,
+					mediaElement: video
+				});
+				
+
+
+			}, 2000);
+		});
+	}
+		var wl = window.location.href;
+		var mob = (window.location.href.indexOf('file://')>=0);
+
+		function qs(name, url) {
+			if (!url) {
+			  url = window.location.href;
+			}
+			name = name.replace(/[\[\]]/g, "\\$&");
+			var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+				results = regex.exec(url);
+			if (!results) return null;
+			if (!results[2]) return '';
+			return decodeURIComponent(results[2].replace(/\+/g, " "));
+		}
+
+		function setCookie(cname,cvalue)	{
+			if (mob===true) {
+				window.localStorage.setItem(cname, cvalue);
+			} else {
+				var d = new Date(); 
+				d.setTime(d.getTime()+(1*24*60*60*1000)); 
+				var expires = "expires="+d.toGMTString(); 
+				document.cookie = cname + "=" + cvalue + "; " + expires; 
+			}
+		} 
+ 		function getCookie(cname)	{ 
+			if (mob===true) {
+				var cvalue = window.localStorage.getItem(cname);
+				return cvalue
+			} else {
+				var name = cname + "="; 
+				var ca = document.cookie.split(';'); 
+				for(var i=0; i<ca.length; i++) { 
+				  var c = ca[i].trim(); 
+				  if (c.indexOf(name)==0) return c.substring(name.length,c.length); 
+				} 
+				return ""; 
+			}
+		} 
+
+		function delCookie(cname) {
+			if (mob===true) {
+				window.localStorage.removeItem(cname);
+			} else {
+				var d = new Date();
+				d.setTime(d.getTime());
+				var expires = "expires="+d.toGMTString();
+				document.cookie = cname + "=" + "" + "; " + expires;
+			}
+		}
+		
+		function clear_all() {
+			if (mob===true) {
+				 window.localStorage.clear();
+			} else {
+				document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+			}	
+		}
+
+		function isNumber(n) {
+		  return !isNaN(parseFloat(n)) && isFinite(n);
+		}
+</script>
+</body>
+</html>
