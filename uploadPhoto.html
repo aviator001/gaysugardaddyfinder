@@ -296,118 +296,150 @@
 		<br><br>
 <div class="container" style="margin:auto;position:absolute;left:0;right:0;display:block;width:100%;top:0px;padding-top:10px;BACKGROUND:aliceblue;height:100%;box-shadow: inset 0 0 10px #000">
 <div class="row">
-<div class="col-md-12" style="text-align:center;margin-top:100px">
-	<img src="assets/images/add_photo.png" style="width:70px;cursor:hand;cursor:pointer" onclick="show_attach()">
-</div>
-<br>
 <div class="col-md-12" style="text-align:center">
 	CLICK TO ADD PROFILE PHOTOS
 </div>
+<div class="col-md-12" style="text-align:center;margin-top:100px">
+	<img src="https://gaysugardaddyfinder.com/assets/images/add_photo.png" style="width:70px;cursor:hand;cursor:pointer" onclick="take_photo()">
 </div>
-<div id="user_images"></div>
+<div id="album"></div><video style="display:none" src="" id="vid"></video>
 
-<script type="text/javascript" src="https://sugardaddydays.com/assets/js/jquery.min.js"></script> 		
-	<div id="attachments" style="display:none" class="col-md-12" style="margin-top:10px">
-		
-		<div id="pbar_holder">
-			<div id="pbar" style="background:url(assets/images/bar_orange.png);width:0px;height:50px"></div><span id="pc"></span>
-		</div>
-		<form style="width:100%;max-width:650px;border:none" class="dropzone dz-preview" id="member" action="x_upload_attachments.php"></form>
-	</div>
-	
-<script>
-Dropzone.autoDiscover=false
-var iErr=0
-function getRandomInt(min, max) {
-		return Math.floor(Math.random() * (max - min + 1)) + min;
-	}
-	var vb=''
+<br>
 
-	function randomIntFromInterval(min,max) {
-		return Math.floor(Math.random()*(max-min+1)+min);
-	}
-var ims
-var usr_img=[]
-	function guid(){
-		j=16
-		var op=''
-		var arr=new Array('a','b','c','d','e','f','i','j','k','m','n','p','q','r','s','t','u','v','w','x','y','z',0,1,2,3,4,5,6,7,8,9,0,0,1,2,3,4,5,6,7,8,9,0)
-		for (k=0;k<j;k++) {
-			var inx=randomIntFromInterval(0,arr.length-1)
-			op += arr[inx]
-		}
-		return op;
-	}
-	function show_attach() {
-		if ($$('attachments').style.display=='block') {
-			$$('attachments').style.display='none'
-			return false
-		}
-		$$('attachments').style.display='block'
-		var url="x_upload_attachments.php"
-		var myDropzone, files=0
-			myDropzone = new Dropzone("form#member", {
-				url: url,
-				maxFilesize: 10000000,
-				renameFilename: function (file) {
-					var name = getCookie('attach_id')			
-					return file.renameFilename = name + "." + file.split('.').pop();
-				}
+</div></div>
+
+		<script src="cordova.js"></script>
+		<script>
+		var imx=0
+		function takeVideo(){
+			navigator.device.capture.captureVideo(function(videoData){
+			},attachMedia.captureVideoError, {
+			limit : 1,
+			duration: 60,
+			saveToPhotoAlbum:true
 			});
-		
-		myDropzone.on("addedfile", function(file) {
-			if (file.size>100000000) {
-				alert('too big')
-				abort=true
-				return false
-			} else {
-				abort=false
-			}
-			if (abort===true) return false
-			if (file.type.indexOf('png')>=0) ext='png'
-			if (file.type.indexOf('jpg')>=0) ext='jpg'
-			if (file.type.indexOf('gif')>=0) ext='gif'
-			if (file.type.indexOf('tif')>=0) ext='tif'
-			if (file.type.indexOf('bmp')>=0) ext='bmp'
-			if (file.type.indexOf('psd')>=0) ext='psd'
-			if (file.type.indexOf('eps')>=0) ext='eps'
-			if (file.type.indexOf('jpeg')>=0) ext='jpg'
-			setCookie('attach_id',guid())
-			if (getCookie('att')=='') {
-				att=guid()+'.'+ext
-			} else {
-				att=getCookie('att')+'|'+guid()+'.'+ext
-			}
-			setCookie('att',att)
-			console.log(att)
+		};
+	 function uploadFile(mediaFile,method) {
+                var ft = new FileTransfer(),
+            path = mediaFile,
+            name = "gautam.3gp";
+        var options = new FileUploadOptions();
+				options.fileKey = "file";
+				options.fileName = name;
+				options.mimeType = "video/mpeg";
+        ft.upload(path,
+            "http://sugardaddydays.com/x_upload.php",
+            function(r) {
+                        alert('Success ' + r.response);
+            },
+            function(error) {
+                        alert('Error ' + path + ': ' + error.code);
+            },
+            options);
+    }
+    function onPhotoURISuccess(imageURI) {
+        uploadFile(imageURI,"library");
+    }
+    function getVideo(source, type) {
+            navigator.camera.getPicture(onPhotoURISuccess, onFail2, { quality:
+50, destinationType: destinationType.FILE_URI, sourceType: source,
+mediaType: type});
 
-			if((file.type=='video/x-ms-wmv')||(file.type=='video/avi')) {
-				alert('Only .mpg .mpeg and .mp4 files allowed for now')
-				return false
-			} else {
-				files++
+    }
+    function onFail2(message) {
+        alert('Error');
+    }
+	
+	
+		function take_photo() {
+			navigator.camera.getPicture(onSuccess, onFail, { 
+				destinationType: Camera.DestinationType.DATA_URL,
+				quality: 50,
+				correctOrientation: true,
+				allowEdit: true
+			});
+		}
+
+		function onSuccessv(mediaFiles) {
+			var i, len;
+			for (i = 0, len = mediaFiles.length; i < len; i += 1) {
+				uploadFile(mediaFiles[i]);
 			}
-		});
-			myDropzone.on("totaluploadprogress", function(progress) {
-			if ($$('pbar').style.display=='none') {
-				$$('pbar').style.display='block'
-				$$('pbar_holder').style.display='block'
-				$$('pc').style.display='block'			
+		}
+
+		function uploadFile(mediaFile) {
+			var fileURL = mediaFile.toURL();
+			var success = function (r) {
+				console.log("Successful upload...");
+				console.log("Code = " + r.responseCode);
 			}
-			if (abort===true) return false
-			console.log(progress)
-			$$('pbar').style.width=Math.round(progress,0)+'%'
-			$$('pc').innerHTML=Math.round(progress,0) + '<b>%</b>'
-		})
-			myDropzone.on("complete", function(file) {
-			if (abort===true) return false
-			$$('pbar').style.width='0px'
-			$$('pbar').style.display='none'
-			$$('pbar_holder').style.display='none'
-			$$('pc').style.display='none'
-		});
-		$('#member').click()
-	}
+			var fail = function (error) {
+				alert("An error has occurred: Code = " + error.code);
+			}
+			var options = new FileUploadOptions();
+			options.fileKey = "file";
+			options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
+			options.mimeType = "video/mp4";
+			var params = {};
+			params.value1 = "test";
+			params.value2 = "param";
+			options.params = params;
+			var ft = new FileTransfer();
+			ft.upload(fileURL, encodeURI(SERVER), success1, fail1, options);
+		}
+
+		function success1() {
+		
+		}
+
+		function fail1() {
+		
+		}
+/* don't need, it should automatically get saved*/
+	
+		function onSuccess(imageData) {
+			var image = document.createElement('img');
+			var sp = document.createElement('span');
+			image.id="img"+imx
+			image.style.width="150px"
+			image.style.height="150px"
+			image.style.margin="10px"
+			image.style.border="5px solid #f0f0f0"
+			image.className="www_box2"
+			image.src = "data:image/jpeg;base64," + imageData;
+			sp.appendChild(image)
+			document.getElementById('album').appendChild(sp)
+			uploadPhoto(image.src)		
+			imx++
+		}
+
+		function onFail(message) {
+			alert('Failed because: ' + message);
+		}
+
+		function onFailv(message) {
+			alert('Failed because: ' + message);
+		}
+
+		function uploadPhoto(imageData) {
+			var fname=getCookie('login') + '_' + Math.round(Math.random()*10000000000) + '.jpg'
+		    $.ajax({url: "https://gaysugardaddyfinder.com/iupload.php",
+		          type: 'POST',
+		          data: {filename: fname, image: imageData,login: getCookie('login'), mid: getCookie('mid')},
+		          success: function(data, status, xhr) {}
+		    });      
+		}
+
+		function win(r) {
+			alert(r)
+		}
+
+		function fail(error) {
+			alert("An error has occurred: "+error)
+		}	
+
+		var currPage='https://gaysugardaddyfinder.com/uploadPhoto.html'
+
 function fs(el) {
 if (!el) el = document.documentElement
 , rfs = // for newer Webkit and Firefox

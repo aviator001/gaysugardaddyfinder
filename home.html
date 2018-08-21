@@ -41,7 +41,7 @@
 					return ""; 
 				}
 			} 
-			if (getCookie('mid')=='') location.href='index?force=login'
+			if (getCookie('mid')=='') location.href='/?force=login'
 			setTimeout(function(){
 				delCookie('nextMID')
 			},1)
@@ -53,16 +53,16 @@
 	</div>
 	<script>
 		function upload_photos() {
-			if(!getCookie('mid')) location.href='index?force=login'
-				else location.href='uploadPhotos?member_id='+getCookie('mid')
+			if(!getCookie('mid')) location.href='/?force=login'
+				else location.href='uploadPhoto.html?member_id='+getCookie('mid')
 		}
 		function view_profile() {
-			if(!getCookie('mid')) location.href='index?force=login'
+			if(!getCookie('mid')) location.href='/?force=login'
 				else location.href='profile?member_id='+getCookie('mid')
 		}
 		function view_album() {
-			if(!getCookie('mid')) location.href='index?force=login'
-				else location.href='viewAlbum?member_id='+getCookie('mid')
+			if(!getCookie('mid')) location.href='/?force=login'
+				else location.href='viewAlbum.html?member_id='+getCookie('mid')
 		}
 		function qs(name, url) {
 			if (!url) {
@@ -178,24 +178,35 @@
 							<table style="position:absolute;width:100%;margin:auto;left:0;right:0;margin-top:40px;font-family:Open Sans;display:">
 								<tbody><tr>
 									<td style="text-align:right">
-										<a href="settings"><img src="https://gaysugardaddyfinder.com/assets/images/c1.png" style="width:75px;height:75px;margin:5px"></a>
+										<a href="settings.html"><img src="https://gaysugardaddyfinder.com/assets/images/c1.png" style="width:75px;height:75px;margin:5px"></a>
 									</td>
 									<td style="text-align:center">
-										<a href="inbox"><img src="https://gaysugardaddyfinder.com/assets/images/c4.png" style="width:75px;height:75px;margin:5px"></a>
+										<a href="inbox.html"><img src="https://gaysugardaddyfinder.com/assets/images/c4.png" style="width:75px;height:75px;margin:5px"></a>
 									</td>
 									<td style="text-align:left">
-										<a href="userHotLists"><img src="https://gaysugardaddyfinder.com/assets/images/c7.png" style="width:75px;height:75px;margin:5px"></a>
+										<a href="userHotLists.html"><img src="https://gaysugardaddyfinder.com/assets/images/c7.png" style="width:75px;height:75px;margin:5px"></a>
 									</td>
 								</tr>
 								<tr>
 									<td style="text-align:right">
-										<a href="uploadPhoto"><img src="https://gaysugardaddyfinder.com/assets/images/c3.png" style="width:75px;height:75px;margin:5px"></a>
+										<a href="uploadPhoto.html"><img src="https://gaysugardaddyfinder.com/assets/images/c3.png" style="width:75px;height:75px;margin:5px"></a>
 									</td>
 									<td style="text-align:center">
-										<a href="browse"><img src="https://gaysugardaddyfinder.com/assets/images/c2.png" style="width:75px;margin:5px"></a>
+										<a href="browse.html"><img src="https://gaysugardaddyfinder.com/assets/images/c2.png" style="width:75px;margin:5px"></a>
 									</td>
 									<td style="text-align:left">
-										<a href="search"><img src="https://gaysugardaddyfinder.com/assets/images/c6.png" style="width:75px;margin:5px"></a>
+										<a href="search.html"><img src="https://gaysugardaddyfinder.com/assets/images/c6.png" style="width:75px;margin:5px"></a>
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align:right">
+										<a href="javascript:start_video()"><img src="https://gaysugardaddyfinder.com/assets/images/c8.png" style="width:75px;height:75px;margin:5px"></a>
+									</td>
+									<td style="text-align:center">
+										<a href="viewAlbum.html"><img src="https://gaysugardaddyfinder.com/assets/images/c9.png" style="width:75px;margin:5px"></a>
+									</td>
+									<td style="text-align:left">
+										<a href="javascript:preview_profile()"><img src="https://gaysugardaddyfinder.com/assets/images/c5.png" style="width:75px;margin:5px"></a>
 									</td>
 								</tr>
 								<tr>
@@ -223,19 +234,19 @@
 										<table style="position:fixed;width:100%;font-family:Open Sans;font-size:0.8em;background:;text-align:center;bottom:50px">
 											<tr>
 												<td style="text-align:">
-													<a href="browse?type=popular"><img class="www_box2" src="https://sugardaddydays.com/assets/images/r12.png" style="width:100px;margin:0px"></a>
+													<a href="browse.html?type=popular"><img class="www_box2" src="https://sugardaddydays.com/assets/images/r12.png" style="width:100px;margin:0px"></a>
 												</td>
 												<td style="text-align:">
-													<a href="browse?type=local"><img class="www_box2" src="https://sugardaddydays.com/assets/images/r13.png" style="width:100px;margin:0px"></a>
+													<a href="browse.html?type=local"><img class="www_box2" src="https://sugardaddydays.com/assets/images/r13.png" style="width:100px;margin:0px"></a>
 												</td>
 												<td style="text-align:">
-													<a href="browse?type=latest"><img class="www_box2" src="https://sugardaddydays.com/assets/images/r14.png" style="width:100px;margin:0px"></a>
+													<a href="browse.html?type=latest"><img class="www_box2" src="https://sugardaddydays.com/assets/images/r14.png" style="width:100px;margin:0px"></a>
 												</td>
 												<td style="text-align:">
-													<a href="browse?type=photos"><img class="www_box2" src="https://sugardaddydays.com/assets/images/r15.png" style="width:100px;margin:0px"></a>
+													<a href="browse.html?type=photos"><img class="www_box2" src="https://sugardaddydays.com/assets/images/r15.png" style="width:100px;margin:0px"></a>
 												</td>
 												<td style="text-align:">
-													<a href="inbox"><img class="www_box2" src="https://sugardaddydays.com/assets/images/r23.png" style="width:100px;margin:0px"></a>
+													<a href="inbox.html"><img class="www_box2" src="https://sugardaddydays.com/assets/images/r23.png" style="width:100px;margin:0px"></a>
 												</td>
 											
 											</tr>
@@ -282,8 +293,8 @@
 			setCookie('currPage',currPage)
 
 			var winH, winW
-			function video_call() {
-				location.href='v?login='+getCookie('login')
+			function start_video() {
+				location.href='channel.html?login='+getCookie('login')+'&action=1'
 			}
 			function window_height() {
 				if (document.body) {
@@ -323,7 +334,7 @@
 	function viewMessageDetail(xid,xlogin) {
 		setCookie('chatting_with',xid)
 		setCookie('chatting_with_login',xlogin)
-		location.href='viewMessage?xid='+xid
+		location.href='viewMessage.html?xid='+xid
 	}
 	
 				function cbg() {
@@ -426,7 +437,7 @@ function send_note() {
 }
 
 function preview_profile() {
-	location.href="https://gaysugardaddyfinder.com/profile?id="+getCookie('mid')
+	location.href="profile.html?id="+getCookie('mid')
 }
 function cancel_note() {
 	$('#hp').hide()
