@@ -9,13 +9,13 @@
 		<title>Gay Sugar Daddy & Sugar Baby Dating | GaySugarDaddyFinder.com</title>
 		<link rel="canonical" href="https://gaysugardaddyfinder.com"
 		<link rel="icon" href="favicon.png">
-		<link href="assets/css/font-awesome.css" rel="stylesheet" >
-		<link href="assets/css/jquery-ui.css" rel="stylesheet" />
-		<link href="assets/css/jquery-confirm.css" rel="stylesheet" />
-		<link href="assets/css/shadows.css" rel="stylesheet" />
-		<link href="assets/css/bootstrap.css" rel="stylesheet">
-		<link href="assets/css/animate.css" rel="stylesheet">
-		<link href="assets/css/magic.css" rel="stylesheet">
+		<link href="https://gaysugardaddyfinder.com/assets/css/font-awesome.css" rel="stylesheet" >
+		<link href="https://gaysugardaddyfinder.com/assets/css/jquery-ui.css" rel="stylesheet" />
+		<link href="https://gaysugardaddyfinder.com/assets/css/jquery-confirm.css" rel="stylesheet" />
+		<link href="https://gaysugardaddyfinder.com/assets/css/shadows.css" rel="stylesheet" />
+		<link href="https://gaysugardaddyfinder.com/assets/css/bootstrap.css" rel="stylesheet">
+		<link href="https://gaysugardaddyfinder.com/assets/css/animate.css" rel="stylesheet">
+		<link href="https://gaysugardaddyfinder.com/assets/css/magic.css" rel="stylesheet">
 		<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic|Open+Sans:300' rel='stylesheet' type='text/css'>
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -72,7 +72,7 @@
 }			
 		</style>
 	</head>
-	<body><script src="assets/js/custom_menu.js"></script>
+	<body><script src="https://gaysugardaddyfinder.com/assets/js/custom_menu.js"></script>
 	<section class="page-wrapper gray wow zoomIn" style="width:100%;text-align:center;margin-top:5px">
 	<div id="con" class="container" style="overflow:auto;background:url(assets/images/bgs.jpg) center no-repeat;background-size:cover;height:100%">
 		<div style="display:none">
@@ -82,20 +82,20 @@
 			<img src='assets/images/load.gif' style='width:100px'><br><br><div>FETCHING PROFILES<br>PLEASE WAIT</div>
 		</div>
 		<div style="position:fixed;top:418px;width:25%;left:60px">
-			<a href="javascript:no()"><img id="no" src="assets/images/in_no.png" style="width:65px"></a>
+			<a href="javascript:no()"><img id="no" src="https://gaysugardaddyfinder.com/assets/images/in_no.png" style="width:65px"></a>
 		</div>
 		<div style="position:fixed;top:418px;width:25%;right:60px">
-			<a href="javascript:yes()"><img id="yes" src="assets/images/in_yes.png" style="width:65px"></a>
+			<a href="javascript:yes()"><img id="yes" src="https://gaysugardaddyfinder.com/assets/images/in_yes.png" style="width:65px"></a>
 		</div>
 	</div>
 	<div><input type="button" value="Go Back" onclick="javascript:history.go(-1)" style="margin-top:500px"></div>
 	</section>
-	<script src="assets/js/jquery.js"></script>
-	<script src="assets/js/jquery-ui.js"></script>
-	<script src="assets/js/jquery-confirm.min.js"></script>
-	<script src="assets/js/common.js"></script>
-	<script src="assets/js/events.js"></script>
-	<script src="assets/js/bootstrap.js"></script>
+	<script src="https://gaysugardaddyfinder.com/assets/js/jquery.js"></script>
+	<script src="https://gaysugardaddyfinder.com/assets/js/jquery-ui.js"></script>
+	<script src="https://gaysugardaddyfinder.com/assets/js/jquery-confirm.min.js"></script>
+	<script src="https://gaysugardaddyfinder.com/assets/js/common.js"></script>
+	<script src="https://gaysugardaddyfinder.com/assets/js/events.js"></script>
+	<script src="https://gaysugardaddyfinder.com/assets/js/bootstrap.js"></script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>	
 <script src="jsSocketNode.js"></script>
@@ -177,7 +177,8 @@
 	function loadProfiles(no) {
 		ctr=0
 		var str=''
-		var url = 'https://gaysugardaddyfinder.com/php/x_get_profile_data.php?member_id='+qs('id')+'&type=search&search='+qs('q')
+		var url = 'https://gaysugardaddyfinder.com/x_get_profile_data.php?member_id='+qs('id')+'&type=search&search='+qs('q')
+		console.log(url)
 		var request = $.ajax({
 			url: url,
 			type: "GET",
@@ -251,7 +252,7 @@
 	function video_call(to_login) {
 		//video_invite_sms(to_login,getCookie('login'))
 		objData={
-					data				: 	'<span id="toaster"><img style="height:25px;position:fixed;left:5px;padding-bottom:5px" src="assets/images/new_video_msg.png"><span style="margin-left:40px;font-family:Open Sans; font-weight:300">NEW VIDEO CALL FROM '+ to_login() + '</span><a href="inbox#'+getCookie('mid')+'"><img onclick="read_notified_mail('+to+')" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:35px;padding-bottom:5px" src="assets/images/open_email.png"></a><img onclick="closeToaster()" src="assets/images/close_email.png" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:5px;padding-bottom:5px"><span>',
+					data				: 	'<span id="toaster"><img style="height:25px;position:fixed;left:5px;padding-bottom:5px" src="https://gaysugardaddyfinder.com/assets/images/new_video_msg.png"><span style="margin-left:40px;font-family:Open Sans; font-weight:300">NEW VIDEO CALL FROM '+ to_login() + '</span><a href="inbox#'+getCookie('mid')+'"><img onclick="read_notified_mail('+to+')" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:35px;padding-bottom:5px" src="https://gaysugardaddyfinder.com/assets/images/open_email.png"></a><img onclick="closeToaster()" src="https://gaysugardaddyfinder.com/assets/images/close_email.png" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:5px;padding-bottom:5px"><span>',
 					toUser				: 	to_login,
 					type				: 	'NEW_VIDEO',
 					fromUser			: 	getCookie('login'),

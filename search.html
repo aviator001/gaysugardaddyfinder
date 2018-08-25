@@ -219,7 +219,7 @@ ul.ui-autocomplete li.ui-menu-item {
 	}
 	
 	function go_members_home() {
-		window.top.location.href='home'
+		window.top.location.href='home.html'
 	}
 		
 	function reg() {
@@ -227,7 +227,7 @@ ul.ui-autocomplete li.ui-menu-item {
 	}
 
 	function showRegistration() {
-		location.href='join'
+		location.href='join.html'
 		$('#f1').hide()
 		$('#f2').hide()
 		$('#f3').hide()
@@ -445,10 +445,10 @@ ul.ui-autocomplete li.ui-menu-item {
 	function view_profile(e) {
 		if (e.target.id) {
 			if (e.target.id.indexOf('img_')>-1) {
-				location.href='profileBrowse?id='+e.target.id.split('_')[1]+'&type=search&search='+$$('searchLocation').value
+				location.href='profileBrowse.html?id='+e.target.id.split('_')[1]+'&type=search&search='+$$('searchLocation').value
 			}
 			if (e.target.id.indexOf('search_')>-1) {
-				location.href='profileBrowse?id='+e.target.id.split('_')[1]+'&type=search&search='+$$('searchLocation').value
+				location.href='profileBrowse.html?id='+e.target.id.split('_')[1]+'&type=search&search='+$$('searchLocation').value
 			}
 		}
 	}
@@ -456,7 +456,7 @@ ul.ui-autocomplete li.ui-menu-item {
 	function view_search_profile(a) {
 		currMID=a.target.id.split('search_')[1]
 		setCookie('currMID',currMID)
-	   location.href='profile?id=' + currMID + '&type=search'
+	   location.href='profile.html?id=' + currMID + '&type=search'
 	}
 	
 

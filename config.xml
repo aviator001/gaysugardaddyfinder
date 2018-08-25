@@ -176,7 +176,7 @@ Gautam Sharma
             <string>WebRTC uses your microphone to make voice calls.</string>
         </config-file>
     </platform>
-    <preference name="Fullscreen" value="false" />
+    <preference name="Fullscreen" value="true" />
     <preference name="WebViewBounce" value="true" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="HideKeyboardFormAccessoryBar" value="true" />

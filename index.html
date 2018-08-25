@@ -590,10 +590,10 @@ h4 {
 		<table style="position:absolute;right:10px">
 			<tbody><tr>
 				<td>
-					<a href="register.php"><div class="www_box2" style="font-family:Economica;color:#333;font-size:16px;margin:0;margin-top:0px;background:whitesmoke;padding:5px;border-radius:4px">NEW ACCOUNT</div></a>
+					<a href="join.html"><div class="www_box2" style="font-family:Economica;color:#333;font-size:16px;margin:0;margin-top:0px;background:whitesmoke;padding:5px;border-radius:4px">NEW ACCOUNT</div></a>
 				</td>
 				<td>
-						<a data-toggle="modal" data-target="#fbLogin" href="#"><div class="www_box2" style="font-family:Economica;color:#333;font-size:16px;margin:0;margin-top:0px;background:lavenderblush;padding:5px;border-radius:4px;margin-left:10px">MEMBERS LOGIN</div></a>
+						<a data-toggle="modal" data-target="#fbLogin" href="javascript:login()"><div class="www_box2" style="font-family:Economica;color:#333;font-size:16px;margin:0;margin-top:0px;background:lavenderblush;padding:5px;border-radius:4px;margin-left:10px">MEMBERS LOGIN</div></a>
 				</td>
 				<td>
 					<img class="www_box2" src="https://sugardaddydays.com/assets/images/fb_blue.png" style="width:45px;border-radius:4px;margin-left:15px">
@@ -634,6 +634,164 @@ h4 {
 	</div>
 	<div id="loader" style="display:none;z-index:99999999999999999;position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.3;margin:auto;background:#000;font-family:Open Sans Condensed;"></div>
 	<img id="img_loader" style="display:none;z-index:999999999999999999;position:absolute;top:0;left:0;right:0;bottom:0;opacity:1;margin:auto;width:50px" src="https://sugardaddydays.com/assets/images/load.gif">
+	<div id="send_email" onkeyup="deduct()" class="modal_window" style="padding:20px;border-radius:6px;position:absolute;z-index:9999999999999;display:none;background:#f0f0f0;top:100px;left:0;right:0;margin:auto;width:320px;max-width:320px;height:500px;font-family:Ubuntu Condensed;font-size:24px;"><div id="tip" style='color:brown;font-family:Ubuntu Condensed'>SEND ANONYMOUS SMS<br><br><div style="font-size:18px;color:#333;font-family:Ubuntu Condensed">1. Your number will not be revealed<br>2. Message will show as coming from </div></div><br><br><div contentEditable onblur='fill_txt()' onclick='erase_txt()' id='message_text' style='word-wrap:break-word;font-family:Ubuntu Condensed;font-size:24px;contentEditable:true;color:#0093D9;cursor:hand;cursor:pointer;border-radius:4px;border:3px solid lightblue;height:170px;max-height:170px;color:#333;overflow-y:scroll;overflow-x:hidden;color:grey;background:#fff;padding:20px;background:#fff'>Type Message Here</div><div><div style="left:20px;position:absolute">CHARACTERS REMAINING: <b><div id="cr">160</div></b></div></div><br><br><div style='margin-top:10px'><div style="font-size:22px"  class="btn btn-info" onclick='send_sms()' id="send_mail">SEND</div>&nbsp;<div style="font-size:22px"  class="btn btn-danger" onclick="document.all.modal_text.style.display='none'" id="">GO BACK</div></div></div>
+	<div id="send_sms" onkeyup="deduct()" class="modal_window" style="padding:20px;border-radius:6px;position:absolute;z-index:9999999999999;display:none;background:#f0f0f0;top:100px;left:0;right:0;margin:auto;width:320px;max-width:320px;height:500px;font-family:Ubuntu Condensed;font-size:24px;"><div id="tip" style='color:brown;font-family:Ubuntu Condensed'>SEND ANONYMOUS SMS<br><br><div style="font-size:18px;color:#333;font-family:Ubuntu Condensed">1. Your number will not be revealed<br>2. Message will show as coming from </div></div><br><br><div contentEditable onblur='fill_txt()' onclick='erase_txt()' id='message_text' style='word-wrap:break-word;font-family:Ubuntu Condensed;font-size:24px;contentEditable:true;color:#0093D9;cursor:hand;cursor:pointer;border-radius:4px;border:3px solid lightblue;height:170px;max-height:170px;color:#333;overflow-y:scroll;overflow-x:hidden;color:grey;background:#fff;padding:20px;background:#fff'>Type Message Here</div><div><div style="left:20px;position:absolute">CHARACTERS REMAINING: <b><div id="cr">160</div></b></div></div><br><br><div style='margin-top:10px'><div style="font-size:22px"  class="btn btn-info" onclick='send_sms()' id="send_mail">SEND</div>&nbsp;<div style="font-size:22px"  class="btn btn-danger" onclick="img.style.display='block';document.all.cover.style.display='none';document.all.modal_text.style.display='none';document.all.modal.style.display='none'" id="">GO BACK</div></div></div>
+	<section id="modalLogin" class="popupContainer" style="position:absolute;display:none;z-index:999999999999999999999;background:aliceblue;margin:auto;left:0;right:0">
+		<div id="cover" style="display:;position:fixed;width:100%;height:100%;background:#000;opacity:0.7;z-index:;top:0;left:0;bottom:0;right:0"></div>
+		<div class="popupHeader" style="background:#f0f0f0;height:55px!Important;width:100%;font-size:2em">
+			<div class="header_title" style="font-size:24px!Important">Login</div>
+			<div id="close_me" style="right:10px;position:absolute"><img src="https://gaysugardaddyfinder.com/assets/images/new_close.png" style="width:15px"></div>
+		</div>
+		<div class="popupHeader">
+			<!-- Social Login -->
+			<div class="social_login">
+				<div style="width:100%;text-align:center">
+				<div style="font-size:14px">LOGIN WITH</div>
+
+				<div  class="one_half" style="width:50%;text-align:center">
+					<a href="#">
+						<img src="https://gaysugardaddyfinder.com/assets/images/lg_google.png" style="width:50px">
+
+					</a>
+				</div>
+				<div  class="one_half"  style="width:50%;text-align:center">
+					<a href="#" class="">
+						<!-- <img onclick="myFacebookLogin()" src="https://terrawire.com/images/face.png" style="width:50px;cursor:hand;cursor:pointer"> -->
+						<img onclick="loadExtURL();load()" src="https://gaysugardaddyfinder.com/assets/images/face.jpg" style="width:50px;cursor:hand;cursor:pointer">
+					</a>
+				</div>
+
+				<div class="centeredText">
+					<br><div>Or: use your Email address</div><br>
+				</div>
+				<div class="action_btns">
+					<div class="one_half" style="padding:3px;margin:0"><a style="background:white!Important;color:#333!Important;box-shadow:0 0 10px rgba(0,0,0,0.1)" href="#" id="login_form" onclick="loginForm()" class="btn">Login</a></div>
+					<div class="one_half last"  style="padding:3px;margin:0"><a style="background:white!Important;color:#333!Important;box-shadow:0 0 10px rgba(0,0,0,0.1)" href="#" id="register_form" onclick="regForm()" class="btn">Sign up</a></div>
+					
+				</div>
+			</div>
+			</div>
+
+			<!-- Username & Password Login form -->
+			<div class="user_login">
+				<form>
+					<label>Email / Username</label>
+					<input id="email" type="text" />
+					<br />
+
+					<label>Password</label>
+					<input id="password" type="password" />
+					<br />
+
+					<div class="checkbox">
+						<input id="remember" type="checkbox" />
+						<label for="remember">Remember me on this computer</label>
+					</div>
+
+					<div class="action_btns">
+						<div class="one_half" style="padding:3px;margin:0"><a id="back_btn" style="background:white!Important;color:#333!Important;box-shadow:0 0 10px rgba(0,0,0,0.1)" href="javascript:backLogin()" class="btn btn_back"><i class="fa fa-angle-double-left"></i> Back</a></div>
+						<div class="one_half last" style="padding:3px;margin:0"><a onclick="login1()" style="background:white!Important;color:#333!Important;box-shadow:0 0 10px rgba(0,0,0,0.1)"href="#" class="btn">Login</a></div>
+					</div>
+				</form>
+				<br />
+				<a href="javascript:showForgot()" class="forgot">Forgot password?</a>
+			</div>
+
+			<!-- Username & Password Login form -->
+			<div class="forgot_password" style="display:none;color:#333">
+				<form>
+					ENTER either your email or your mobile number and click on the "Send Password' button to retrieve your password securely.
+					<br /><br />
+					<input type="text" placeholder="Enter your Email" style="height:50px!Important;border-radius:7px!Important;border:1px solid aliceblue!Important;padding:4px;width:90%"/>
+					<br />
+					OR
+					<br />
+					<input type="text" placeholder="Enter your mobile number" style="height:50px!Important;border-radius:7px!Important;border:1px solid aliceblue!Important;padding:4px;width:90%"/>
+					<br />
+					<div class="action_btns">
+						<div class="one_half" style="padding:3px;margin:0"><a id="back_btn_forgot" style="background:white!Important;color:#333!Important;box-shadow:0 0 10px rgba(0,0,0,0.1)" href="javascript:backForgot()" class="btn btn_back"><i class="fa fa-angle-double-left"></i> Back</a></div>
+						<div class="one_half last" style="padding:3px;margin:0"><a style="background:white!Important;color:#333!Important;box-shadow:0 0 10px rgba(255,0,0,0.1)" href="javascript:sendForgot()" class="btn">Send</a></div>
+					</div>
+				</form>
+			</div>
+
+			<!-- Register Form -->
+			<div class="user_register">
+				<form>
+					<div id="f0" style="color:silver!Important; text-transform: lowercase!Important;">
+						We were able to create your account using facebook. However .. we just need a couple of pieces of information and then we will be on our way - connecting you to your dream sugar daddy or sugar baby...or both! You only live once, right?
+					</div>
+					<div id="f1">
+						<label>Create a Profile Name</label>
+						<input type="username"  style="height:50px!Important;border-radius:7px!Important;border:1px solid aliceblue!Important;padding:4px;width:100%" />
+						<br />
+					</div>
+					<div id="f2">
+						<br />
+						<label>Email Address</label>
+						<input type="email"  style="height:50px!Important;border-radius:7px!Important;border:1px solid aliceblue!Important;padding:4px;width:100%" />
+						<br />
+					</div>
+					<div id="f3">
+						<label>Password</label>
+						<input type="password"  style="height:50px!Important;border-radius:7px!Important;border:1px solid aliceblue!Important;padding:4px;width:100%" />
+						<br />
+					</div>
+					<div id="f4">
+						<br /><label style="font-size:1.2em;color:maroon">Mobile Number</label>
+						<input type="text" placeholder="Please enter your mobile number"  style="height:50px!Important;border-radius:7px!Important;border:1px solid aliceblue!Important;padding:4px;width:100%" />
+						<div class="action_btns">
+							<div class="one_half last" style="padding:3px;margin:0"><a style="box-shadow:0 0 10px rgba(0,0,0,0.1);background:aliceblue" href="javascript:fb_step2()" class="btn">Next</a></div>
+						</div>						
+					</div>
+					<div id="f5">
+						<label>Age</label>
+						<input type="age" id="age"  style="height:50px!Important;border-radius:7px!Important;border:1px solid aliceblue!Important;padding:4px;width:100%" />
+						<br />
+					</div>
+					<div id="f6">
+						<br />
+						<label>Gender</label>
+						<select type="select" id="gender" style="height:50px!Important;border-radius:7px!Important;border:1px solid aliceblue!Important;padding:4px;width:100%">
+							<option name="Sugar Baby" value="Sugar Baby" selected>Sugar Baby</option>
+							<option name="Sugar Daddy" value="Sugar Daddy">Sugar Daddy</option>
+						</select>
+						<br />
+					</div>
+					<div id="f7">
+						<br />
+						<label>About You</label>
+						<textarea id="general_info" placeholder="About you - no essays, limit to 255 Characters"  style="height:100px!Important;border-radius:7px!Important;border:1px solid aliceblue!Important;padding:4px;width:100%"></textarea>
+						<div class="action_btns">
+							<div class="one_half last" style="padding:3px;margin:0"><a style="box-shadow:0 0 10px rgba(0,0,0,0.1);background:aliceblue" href="javascript:fb_step3()" class="btn">Next</a></div>
+						</div>	
+					</div>
+					<div id="f8">
+						<br />
+						<label>Upload Photo[s]</label>
+						<div id="photos" style="height:100px!Important;border-radius:7px!Important;border:1px solid aliceblue!Important;padding:4px;width:100%;background:#fff">
+							<BR>POKE ME<BR>
+						</div>
+						<div class="action_btns">
+							<div style="padding:3px;margin:0;width:100%"><a style="box-shadow:0 0 10px rgba(0,0,0,0.1);background:lavenderblush" href="javascript:finish_fb_registration()" class="btn">COMPLETE REGISTRATION</a></div>
+						</div>	
+					</div>
+					<div class="action_btns" id="f9">
+						<div style="padding:3px;margin:0;width:100%"><a style="box-shadow:0 0 10px rgba(0,0,0,0.1);background:aliceblue" href="javascript:go_members_home()" class="btn">GO TO MEMBERS HOME</a></div>
+					</div>						
+					<div id="f10">
+						<div class="action_btns">
+							<div class="one_half" style="padding:3px;margin:0"><a id="back_btn_reg" style="background:white!Important;color:#333!Important;box-shadow:0 0 10px rgba(0,0,0,0.1)"  href="javascript:backRegister()" class="btn btn_back"><i class="fa fa-angle-double-left"></i> Back</a></div>
+							<div class="one_half last" style="padding:3px;margin:0"><a style="background:white!Important;color:#333!Important;box-shadow:0 0 10px rgba(0,0,0,0.1)"href="#" class="btn">Register</a></div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+	<div id="loader" style="display:none;z-index:99999999999999999;position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.3;margin:auto;background:#000;font-family:Open Sans Condensed;"></div>
+	<img id="img_loader" style="display:none;z-index:999999999999999999;position:absolute;top:0;left:0;right:0;bottom:0;opacity:1;margin:auto;width:50px" src="https://sugardaddydays.com/assets/images/load.gif">
+
 	<script>
 		function load() {
 			$('#loader').show()
@@ -672,4 +830,95 @@ $(document).ready(function () {
 		if (!getCookie('lat')) getLocation()
     });
 });
+	function go_members_home() {
+		window.top.location.href='home'
+	}
+		
+	function joinFree() {
+		window.location.href='join'	
+	}
+	function $$(obj) {
+		return document.getElementById(obj)
+	}
+
+	function showRegistration() {
+		location.href='join.html'
+		$('#f1').hide()
+		$('#f2').hide()
+		$('#f3').hide()
+		$('#f5').hide()
+		$('#f6').hide()
+		$('#f7').hide()
+		$('#f8').hide()
+		$('#f9').hide()
+		$('#f10').hide()
+		$$('modalLogin').style.display=''
+		regForm() 
+	}	
+	function login() {
+		$$('modalLogin').style.display=''
+	}
+	function loginForm() {
+		$('.social_login').hide()
+		$('.user_login').show()
+	}
+	function backLogin() {
+		$('.social_login').show()
+		$('.user_login').hide()
+	}
+	function backForgot() {
+		$('.forgot_password').hide()
+		$('.user_login').show()
+	}
+	function backRegister() {
+		$('.social_login').show()
+		$('.user_register').hide()
+	}
+	function regForm() {
+		location.href='join.html'
+		$('.social_login').hide()
+		$('.user_register').show()
+	}
+	function showForgot() {
+		$('.user_login').hide()
+		$('.forgot_password').show()
+	}
+	function login1() {
+		var m = $("#email").val(),
+			p = $("#password").val();
+			console.log("x_login.php?user_input=" + m + "&pswd=" + p)
+		$.ajax({
+			url: "https://gaysugardaddyfinder.com/x_login.php?user_input=" + m + "&pswd=" + p,
+			type: "GET",
+			dataType: "html",
+			cache: !1,
+			success: function(em) {
+				var o = JSON.parse(em);
+				setCookie("logged", "1")
+				setCookie("mid", o.mid)
+				setCookie("login", o.login)
+				setCookie("mobile", o.mobile)
+				setCookie("long_code", o.long_code)
+				setCookie("location", o.location)
+				setCookie("email", o.email)
+				window.top.location.href = "home.html"
+			}
+		})
+	}
+	
+	['https://gaysugardaddyfinder.com/assets/css/font-awesome.css',
+	'https://gaysugardaddyfinder.com/assets/css/login.css',
+	'https://gaysugardaddyfinder.com/assets/css/jquery-confirm.css',
+	'https://gaysugardaddyfinder.com/assets/css/shadows.css',
+	'https://gaysugardaddyfinder.com/assets/css/bootstrap.css'
+	].forEach(function(src) {
+		cb(src)
+	});	
+
+	function cb(src) {
+		var l = document.createElement('link'); l.rel = 'stylesheet';
+		l.href = src;
+		var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
+	};
+	
 </script>

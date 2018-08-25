@@ -9,17 +9,189 @@
     <title>Gay Sugar Daddy Gay Sugar Baby Video Chat Live</title>
     <meta name="description" content="Gay Sugar Daddy Gay Sugar Baby Video Chat Live" />
     <meta name="keywords" content="Gay Sugar Daddy Gay Sugar Baby Video Chat Live" />
-
+<style>
+.head {
+	font-family:Open Sans;
+	font-size:21px;
+	font-weight:300;
+	text-decoration:none;
+	text-align:center;
+	background:gold;
+	padding:5px;
+	width:100%;
+}
+.head1 {
+	font-family:Open Sans;
+	font-size:21px;
+	font-weight:300;
+	text-decoration:none;
+	text-align:center;
+	padding:5px;
+	background:#f0f0f0;
+	opacity:1
+}
+</style>
 <body style="background:url(https://gaysugardaddyfinder.com/assets/images/tv2.gif) repeat">
 <link href='https://txt.am/assets/css/shadows.css' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
-<div id="videos-container"></div>
+<br><br><br><div id="videos-container"></div>
+<div id="h_1" style="position:absolute;z-index:999999999999999999999;width:100%;top:0px;left:0px;height:30px;color:#000" class="head1"></div>
+		<div>
+
+				<div>
+				<table style="display:none">
+					<tr style="display:">
+						<td>
+							<input type="text" class="tmr" id="txtHours">
+						</td>
+						<td>
+							<input type="text" class="tmr" id="txtMins">
+						</td>
+						<td>
+							<input type="text" class="tmr" id="txtSecs">
+						</td>
+					</tr>
+					<tr>
+						<td>
+								<span style="width:30px;height:20px;opacity:1;color:#fff;font-family:Poiret One;font-size:18px;">SECONDS</span>
+						</td>
+						<td>
+								<span style="width:30px;height:20px;opacity:1;color:#fff;font-family:Poiret One;font-size:18px;">MINUTES</span>
+						</td>
+						<td>
+							<span style="width:30px;height:20px;opacity:1;color:#fff;font-family:Poiret One;font-size:18px;">HOURS</span>
+						</td>
+					</tr>
+				</table>
+			<div>
+				<table>
+					<tr>
+						<td>
+							<div class="" style="display:none" id="c_dd"></div>
+						</td>
+						<td>
+							&nbsp;&nbsp;
+						</td>
+						<td>
+							<div class="" style="display:none"  id="c_hh"></div>
+						</td>
+						<td>
+							&nbsp;&nbsp;
+						</td>
+						<td>
+							<div class="" id="c_mm"></div>
+						</td>
+						<td>
+							&nbsp;&nbsp;
+						</td>
+						<td>
+							<div class="" id="c_ss"></div>
+						</td>
+						<td>
+							&nbsp;&nbsp;
+						</td>
+						<td>
+							<div style="display:none"  class="" id="c_ms"></div>
+						</td>
+					</tr>
+					</table>
+				</div>
+			</div>
+	
+				<div style=";margin:auto;position:absolute;left:0;right:0;top:0;bottom:0;">
+				<img style="width:223px;height:60px;opacity:0;" src="https://txt.am/assets/img/panel.png">
+			</div>
+		</div>
+		
+	</div>
+</div>
+<img src="https://gaysugardaddyfinder.com/assets/images/btn_options.png" style="position:absolute;z-index:999999999999999999;width:60px;bottom:10px;left:10px">
+<img src="https://gaysugardaddyfinder.com/assets/images/btn_rec.png" onclick="startRec()" id="btn_rec" style="position:absolute;z-index:999999999999999999;width:60px;bottom:10px;right:0px;left:0;margin:auto">
+<img onclick="javascript:location.href='home.html'" src="https://gaysugardaddyfinder.com/assets/images/btn_exit.png" id="btn_ppl" style="cursor:hand;cursor:pointer;position:absolute;z-index:999999999999999999;width:60px;bottom:10px;right:10px">
+<img  src="https://gaysugardaddyfinder.com/assets/images/wait.gif" id="img_wait" style="position:absolute;z-index:999999999999999999999;width:160px;bottom:0px;right:0px;left:0;top:0;margin:auto">
 <script src="https://gaysugardaddyfinder.com/rtc.js"></script>
 <script src="https://txt.am/webrtc/stream/js/socket.io.js"></script>
 <script src="https://txt.am/assets/js/jquery.js"></script>
+<script src="jsSocketNode.js"></script>
 <script src="cordova.js"></script>
+<script src="https://cdn.WebRTC-Experiment.com/RecordRTC.js"></script>
 <script>
+var localStream
+var remoteStream
+var recorder
+  var mRecordRTC = new MRecordRTC();
+  
+function startRec() {
+		if ($$('btn_rec').src=='https://gaysugardaddyfinder.com/assets/images/btn_on.png') {
+			$$('btn_rec').src='https://gaysugardaddyfinder.com/assets/images/btn_rec.png'
+			stopRec()
+			$$('img_wait').style.display=''
+			status('Saving video, please wait')
+		} else {
+			if (remoteStream) stream=remoteStream
+				else stream=localStream
+			recordAudio = RecordRTC(stream, {
+				type: 'audio',
+				recorderType: StereoAudioRecorder,
+				// bufferSize: 16384,
+				onAudioProcessStarted: function() {
+					recordVideo.startRecording();
+				}
+			});
+			var videoOnlyStream = new MediaStream();
+			videoOnlyStream.addTrack(stream.getVideoTracks()[0]);
+			recordVideo = RecordRTC(videoOnlyStream, {
+				type: 'video',
+				// recorderType: MediaStreamRecorder || WhammyRecorder
+			});
+			recordAudio.startRecording();
+			status('Recording in progress...')
+			$$('btn_rec').src='https://gaysugardaddyfinder.com/assets/images/btn_on.png'
+		}
+}
+function stopRec() {
+    fileName = Math.round(Math.random() * 99999999) + 99999999;
+    recordAudio.stopRecording(function() {
+        recordVideo.stopRecording(function() {
+            PostBlob(recordAudio.getBlob(), recordVideo.getBlob(), fileName);
+        });
+    });
+}
+function PostBlob(audioBlob, videoBlob, fileName) {
+    var formData = new FormData();
+    formData.append('filename', fileName);
+    formData.append('audio-blob', audioBlob);
+    formData.append('video-blob', videoBlob);
+    xhr('http://gaysugardaddyfinder.com/blogx.php', formData, function(ffmpeg_output) {
+		$$('img_wait').style.display='none'
+		status("<a class='head' download target='_BLANK' type='application/octet-stream' href='http://gaysugardaddyfinder.com/vids/"+fileName+".mp4'>Download Video Here</a>");
+    });
+}
+function status(txt) {
+	document.getElementById('h_1').innerHTML=txt
+}
+function status_hide() {
+	setTimeout(function(){
+		document.getElementById('h_1').className="magictime magic"
+		setTimeout(function(){
+			document.getElementById('h_1').className="head1"
+			document.getElementById('h_1').innerHTML=''
+		},1000)
+	},3000)
+}
+function xhr(url, data, callback) {
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function() {
+        if (request.readyState == 4 && request.status == 200) {
+            callback(request.responseText);
+        }
+    };
+    request.open('POST', url);
+    request.send(data);
+}
+status('Accessing Local Stream')
 setTimeout(function(){
+	if (getCookie('login')=='') location.href='index.html'
 	var roomid = '';
 	if (localStorage.getItem('login')) {
 		roomid = localStorage.getItem('login');
@@ -28,7 +200,7 @@ setTimeout(function(){
 	}
 	localStorage.setItem('login', qs('login'));
 	$('#it').hide()
-	$('#wt').show()
+	//$('#wt').show()
 	if (qs('action')) {
 		if (qs('login')) {
 			connection.open(qs('login'))
@@ -43,10 +215,8 @@ setTimeout(function(){
 		}
 		$('#wt').hide()
 	}
-},5000)
+},2000)
 
-var	mySound = new sound("ringback_tone.mp3");
-mySound.play();
 var connection = new RTCMultiConnection();
 var localID
 connection.autoCloseEntireSession = true;
@@ -60,12 +230,19 @@ connection.sdpConstraints.mandatory = {
     OfferToReceiveAudio: true,
     OfferToReceiveVideo: true
 };
+
+if (qs('init')=='1') {
 	show_dial_out()
+	$('#wt').hide()
+}
+if (qs('action')=='1') show_dial_out()
 
 connection.videosContainer = document.getElementById('videos-container');
 connection.onstream = function(event) {
     if(event.type === 'local') {
-		mySound.stop(); 
+		$$('img_wait').style.display='none'
+		status('Connected. Waiting for Calls...')
+		localStream=event.stream
 		event.mediaElement.id = event.userid;
 		connection.videosContainer.appendChild(event.mediaElement);
 		event.mediaElement.style.cssText='position:absolute;top:0px;left:0;width:100%;height:100%;object-fit:cover'
@@ -76,7 +253,7 @@ connection.onstream = function(event) {
 			$('#'+event.mediaElement.id).click()
 		}, 3000);	}
     if(event.type === 'remote') {
-		mySound.stop(); 
+		remoteStream=event.stream
 		$('#wt').hide()
         connection.videosContainer.innerHTML=''
 		connection.receiveFirstRemoteStream = true;
@@ -93,30 +270,16 @@ connection.onstream = function(event) {
 };
 
 	function sound(src) {
-		this.sound = document.createElement("audio");
-		this.sound.src = src;
-		this.sound.setAttribute("preload", "auto");
-		this.sound.setAttribute("controls", "none");
-		this.sound.style.display = "none";
-		document.body.appendChild(this.sound);
-		this.play = function(){
-			this.sound.play();
-		}
-		this.stop = function(){
-			this.sound.pause();
-		}    
 	}
 	connection.onstreamended = connection.onleave = connection.onclose = function(event) {
 		var video = document.getElementById(event.userid);
 		if (!video) return;
 		video.parentNode.removeChild(video);
+		remoteStream=null
 		history.go(-1)
 	};
 
 	(function keepCheckingForRoom() {
-		mySound.stop(); 
-		mySound = new sound("https://gaysugardaddyfinder.com/assets/images/1985_ring.mp3");
-		mySound.play(); 
     if(!connection.receiveFirstRemoteStream) {
         setTimeout(keepCheckingForRoom, 3000);
         return;
@@ -141,19 +304,17 @@ connection.onstream = function(event) {
 	})();
 	var ring
 	function show_dial_out() {
-		mySound = new sound("https://gaysugardaddyfinder.com/assets/images/1985_ring.mp3");
-		mySound.play();
 		var div=document.createElement('div')
 		div.style.cssText='display:none;width:90%;max-width:600px;position:absolute;margin:auto;left:0;right:0;top:0;bottom:0;height:90px;background:#fff;border-radius:6px;font-family:Open Sans;font-weight:300;color:#000;'
 		div.id='wt'
 		div.className='www_box'
-		div.innerHTML='<table><tr><td><img src="https://gaysugardaddyfinder.com/assets/images/phone_calling.gif" style="width:100px"></td><td><div>CALLING '+getCookie('chatting_with_login').toUpperCase()+'...</div><div style="color:silver;font-size:0.8em">Attempting contact via SMS, Voice Call & Email.</div></td></tr></table>'
+		div.innerHTML='<table><tr><td><img src="https://gaysugardaddyfinder.com/assets/images/phone_calling.gif" style="width:100px"></td><td><div>CALLING ...</div><div style="color:silver;font-size:0.8em">Attempting contact via SMS, Voice Call & Email.</div></td></tr></table>'
 		document.documentElement.appendChild(div)
 		var div=document.createElement('div')
 		div.style.cssText='width:90%;max-width:600px;position:absolute;margin:auto;left:0;right:0;top:0;bottom:0;height:90px;background:#fff;border-radius:6px;font-family:Open Sans;font-weight:300;color:#000;'
 		div.id='it'
 		div.className='www_box'
-		div.innerHTML='<table><tr><td><img src="https://gaysugardaddyfinder.com/assets/images/loading_x.gif" style="width:30px;PADDING:25px"></td><td><div> ACCESSING LOCAL VIDEO STREAM...</div><div style="color:silver;font-size:0.8em">Preparing to initiate outbound video call</div></td></tr></table>'
+		div.innerHTML='<table><tr><td><img src="https://gaysugardaddyfinder.com/assets/images/loading_x.gif" style="width:30px;PADDING:25px"></td><td><div> ACCESSING LOCAL VIDEO STREAM...</div></td></tr></table>'
 		document.documentElement.appendChild(div)
 	}
 
@@ -221,7 +382,6 @@ connection.onstream = function(event) {
 		}
 	} 
 
-</script>
-  <script src="https://cdn.webrtc-experiment.com/common.js"></script>
+	</script>
 </body>
 </html>
