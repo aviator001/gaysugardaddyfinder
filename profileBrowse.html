@@ -140,14 +140,14 @@
 	
 	function send_mail(id) {
 		setCookie('chatting_with',id)
-		location.href='sendMail?to_member_id='+id
+		location.href='sendMail.html?to_member_id='+id
 	}
 	
 	function send_sms() {
 		location.href='sendSMS.php?to_member_id='+qs('id')
 	}
 	function view_img(io){
-		location.href='viewAlbum?member_id='+currMID
+		location.href='viewAlbum.html?member_id='+currMID
 	}
 
 	

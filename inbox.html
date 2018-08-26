@@ -120,15 +120,16 @@ ul.ui-autocomplete li.ui-menu-item {
 	var ct=0, smids=[]
 
 	function getMail() {
+		console.log('https://gaysugardaddyfinder.com/x_get_user_mail.php?x_start_inbox='+getCookie('x_start_inbox'))
 		$$('mobile_inbox').style.marginTop='10px'
 		var request = $.ajax({
-			url: 'https://gaysugardaddyfinder.com/x_get_user_mail.php?x_start_inbox='+getCookie('x_start_inbox'),
+			url: 'https://gaysugardaddyfinder.com/x_get_user_mail.php?x_start_inbox='+getCookie('x_start_inbox')+'&mid='+getCookie('mid'),
 			type: "GET",
 			dataType: "html",
 			cache: false,
 			success: function(msg) {
 				console.log(msg)
-				if (msg.trim()!=='null') {
+			//	if (msg.trim()!=='null') {
 					$$('mobile_inbox').innerHTML=''
 					var data=JSON.parse(msg)
 					console.log(data)
@@ -150,19 +151,19 @@ ul.ui-autocomplete li.ui-menu-item {
 							ms.id='div_'+xid+'_'+from_login
 							ms.className='www_box2 div_mail_row'
 							ms.style.cssText='color:#000!Important;width:100%;	height:50px;	background: #fcfcfc;	padding:5px;	font-family: Open Sans;	margin:0; border-top:1px solid skyblue;font-family:Open Sans;font-size:0.9em;color:#000;'
-							ms.innerHTML='<a onclick=javascript:viewMessageDetail('+xid+',"'+from_login+'")><table class="table_mail_row" style="width:100%;color:#000!Important;"><tbody><tr class="tr_mail_row" id="row_'+xid+'"><td style="width:20px"><input id="'+xid+'" type="checkbox"></td><td style="width:40px"><img src="https://gaysugardaddyfinder.com/assets/images/new_m.png" class="'+mail_icon+'"></td><td style="width:50px"><img onerror="this.src=\'assets/images/no_photo.png\'" src="'+img_src+'" class="img_mail_row"></td><td style="width:115px;text-align:left">'+from_login+'</td><td style="text-align:left">'+sent+'</td><td><img src="https://gaysugardaddyfinder.com/assets/images/yyy_trash.png" style="width:30px"> </td></tr></tbody></table></a>'
+							ms.innerHTML='<a onclick=javascript:viewMessageDetail('+xid+',"'+from_login+'")><table class="table_mail_row" style="width:100%;color:#000!Important;"><tbody><tr class="tr_mail_row" id="row_'+xid+'"><td style="width:20px"><input id="'+xid+'" type="checkbox"></td><td style="width:40px"><img src="https://gaysugardaddyfinder.com/assets/images/new_m.png" class="'+mail_icon+'"></td><td style="width:50px"><img onerror="this.src=\'https://gaysugardaddyfinder.com/assets/images/no_photo.png\'" src="'+img_src+'" class="img_mail_row"></td><td style="width:115px;text-align:left">'+from_login+'</td><td style="text-align:left">'+sent+'</td><td><img src="https://gaysugardaddyfinder.com/assets/images/yyy_trash.png" style="width:30px"> </td></tr></tbody></table></a>'
 							$$('mobile_inbox').appendChild(ms)
 						} else {
 							ms.id='div_'+xid+'_'+from_login
 							ms.className='www_box2 div_mail_row'
 							ms.style.cssText='color:#000!Important;width:100%;	height:50px;	background: #fcfcfc;	padding:5px;	font-size:15px;	font-family: Open Sans;	margin:0; border-top:1px solid skyblue'
-							ms.innerHTML='<a onclick=javascript:viewMessageDetail('+xid+',"'+from_login+'")><table class="table_mail_row" style="width:100%;color:#000!Important;"><tbody><tr class="tr_mail_row" id="row_'+xid+'"><td style="width:20px"><input id="'+xid+'" type="checkbox"></td><td style="width:40px"><img src="https://gaysugardaddyfinder.com/assets/images/new_m.png" class="'+mail_icon+'"></td><td style="width:50px"><img onerror="this.src=\'assets/images/no_photo.png\'" src="'+img_src+'" class="img_mail_row"></td><td style="width:115px;text-align:left">'+from_login+'</td><td style="text-align:left">'+sent+'</td><td><img src="https://gaysugardaddyfinder.com/assets/images/yyy_trash.png" style="width:30px"> </td></tr></tbody></table></a>'
+							ms.innerHTML='<a onclick=javascript:viewMessageDetail('+xid+',"'+from_login+'")><table class="table_mail_row" style="width:100%;color:#000!Important;"><tbody><tr class="tr_mail_row" id="row_'+xid+'"><td style="width:20px"><input id="'+xid+'" type="checkbox"></td><td style="width:40px"><img src="https://gaysugardaddyfinder.com/assets/images/new_m.png" class="'+mail_icon+'"></td><td style="width:50px"><img onerror="this.src=\'https://gaysugardaddyfinder.com/assets/images/no_photo.png\'" src="'+img_src+'" class="img_mail_row"></td><td style="width:115px;text-align:left">'+from_login+'</td><td style="text-align:left">'+sent+'</td><td><img src="https://gaysugardaddyfinder.com/assets/images/yyy_trash.png" style="width:30px"> </td></tr></tbody></table></a>'
 							$$('mobile_inbox').appendChild(ms)
 						}
 					}
-				} else {
-						$$('mobile_inbox').innerHTML='<h2 style="font-family:Open Sans;padding:10px">NO MESSAGES</h2>'
-					}
+			//	} else {
+			//			$$('mobile_inbox').innerHTML='<h2 style="font-family:Open Sans;padding:10px">NO MESSAGES</h2>'
+			//		}
 			}
 		})
 	}
@@ -170,7 +171,7 @@ ul.ui-autocomplete li.ui-menu-item {
 	function viewMessageDetail(xid,xlogin) {
 		setCookie('chatting_with',xid)
 		setCookie('chatting_with_login',xlogin)
-		location.href='viewMessage?xid='+xid
+		location.href='viewMessage.html?xid='+xid
 	}
 	
 	var ctr=0
@@ -194,6 +195,18 @@ ul.ui-autocomplete li.ui-menu-item {
 	});
 	$( "#quickSearchTerm" ).autocomplete( "option", "appendTo", "#xresults" );
 	
+	function init() {
+		var request = $.ajax({
+			url: 'https://gaysugardaddyfinder.com/x_get_user_mail.php?mid='+getCookie('mid'), 
+			type: "GET",
+			dataType: "html",
+			cache: false,
+			success: function(msg) {
+				//var data=JSON.parse(msg)
+				console.log(msg)
+			}
+		})	
+	}
 </script>
 </body>
 </html>
