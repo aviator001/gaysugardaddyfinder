@@ -1,4 +1,6 @@
 	if (getCookie('login')) var login=getCookie('login')
+		else var login = generateRandomString(8)
+		
 	if (getCookie('memberID')) {
 		var memberID=getCookie('memberID')
 		var mid=getCookie('memberID')
@@ -9,8 +11,9 @@
 	}
 	if (getCookie('mobile')) var mobile=getCookie('mobile')
 	if (getCookie('img')) var img=getCookie('img')
-	setTimeout('xconnect(\''+getCookie('login')+'\',\''+getCookie('mobile')+'\')',1)
-	
+
+	setTimeout('xconnect()',1)
+		
 	var op1=1
 	var operand1=-1
 	var op2=0
@@ -28,8 +31,8 @@
 	var seperator = "|"
 	var toClientID, to_clientid, to_user, to_mid, my_mid,from_user
 	var to_login
-	var err_img = "assets/avatars/10.png" 
-	var err_img1 = 'assets/images/tie.jpg'
+	var err_img = "https://gaysugardaddyfinder.com/assets/avatars/10.png" 
+	var err_img1 = 'https://gaysugardaddyfinder.com/assets/images/tie.jpg'
 	var UserID
 	var toLogin
 	var frmLogin
@@ -140,7 +143,7 @@
 	var xuser=[ ]
 	var xhost=[ ]
 	var x
-	var domain='txt.am'
+	var domain='gaysugardaddyfinder.com'
 	var ttx
 	var x=[],base
 	var portIM=7001
@@ -166,7 +169,7 @@
 		return document.getElementById(objID)
 	}
 	//Load all JS libraries
-	['https://txt.am/assets/js/jquery.js','https://terrawire.com/assets/js/xmalert.js','https://terrawire.com/assets/js/alerts.js','https://terrawire.com/assets/js/mpopup.js','https://terrawire.com/assets/js/bootstrap.js','https://terrawire.com/assets/js/dropzone.js','https://terrawire.com/assets/js/jquery-confirm.js'].forEach(function(src) {
+	['https://gaysugardaddyfinder.com/assets/js/jquery.js','https://terrawire.com/assets/js/xmalert.js','https://terrawire.com/assets/js/alerts.js','https://terrawire.com/assets/js/mpopup.js','https://terrawire.com/assets/js/bootstrap.js','https://terrawire.com/assets/js/dropzone.js','https://terrawire.com/assets/js/jquery-confirm.js'].forEach(function(src) {
 		script = document.createElement('script');
 		script.src = src;
 		script.async = false;
@@ -174,7 +177,7 @@
 	});	
 
 	//	Load All CSS files
-	['https://gaysugardaddyfinder.com/assets/css/effects.css','https://txt.am/assets/css/magic.css','https://txt.am/assets/css/stream.css','https://gaysugardaddyfginder.com/assets/css/jquery-confirm.css'].forEach(function(src) {
+	['https://gaysugardaddyfinder.com/assets/css/effects.css','https://gaysugardaddyfinder.com/assets/css/magic.css','https://gaysugardaddyfinder.com/assets/css/stream.css','https://terrawire.com/assets/css/jquery-confirm.css'].forEach(function(src) {
 		cb(src)
 	});	
 	
@@ -199,16 +202,16 @@
 	// $$('whos_online').style.cssTextr='font-size:12px!Important'
 	//Show-Hide whos online
 	function toggle_users() {
-		$$('swo').style.cssText='font-size:12px!Important!'
-		if ($$('swo').textContent=='SHOW WHOS ON') { 
-			$$('swo').innerHTML='<span style="font-size:12px!Important">HIDE WHOS ON</span>'
-			$$('iswo').src='https://terrawire.com/images/chevron-down.png'
-			$('#whos_online').show()
-		} else {
-			$$('swo').innerHTML='<span style="font-size:12px!Important">SHOW WHOS ON</span>'
-			$$('iswo').src='https://terrawire.com/images/chevron-right.png'
-			$('#whos_online').hide()
-		}
+		// $$('swo').style.cssText='font-size:12px!Important!'
+		// if ($$('swo').textContent=='SHOW WHOS ON') { 
+			// $$('swo').innerHTML='<span style="font-size:12px!Important">HIDE WHOS ON</span>'
+			// $$('iswo').src='https://terrawire.com/images/chevron-down.png'
+			// $('#whos_online').show()
+		// } else {
+			// $$('swo').innerHTML='<span style="font-size:12px!Important">SHOW WHOS ON</span>'
+			// $$('iswo').src='https://terrawire.com/images/chevron-right.png'
+			// $('#whos_online').hide()
+		// }
 	}
 
 	function msg() {
@@ -288,10 +291,10 @@
 	}
 	var fromUser
 	function xconnect(a,b,c) {
-		if (!a) var a = getCookie('login')
-		if (!b) var b = getCookie('mobile')
+		if (!a) var a = login
+		if (!b) var b = mobile
 		if (!c) var c = getCookie('img')
-		var h = 'wss://txt.am:'+portIM+'/?login='+a+'&mobile='+b+'&source='+window.location.host+'&fromImg='+getCookie('img')
+		var h = 'wss://terrawire.com:7002/?login='+a+'&mobile='+b+'&source='+window.location.host+'&fromImg='+getCookie('img')
 		console.log(h)
 		socket = new WebSocket(h);
 		socket.onerror = function(msg) {
@@ -311,14 +314,37 @@
 						fromUser=data.fromUser
 						$.confirm({
 							theme: 'modern',
-							title:'Imcoming Video call',
+							title:'Imcoming Video callw',
 							content: 'NEW VIDEO IM REQUEST FROM '+ data.fromUser.toUpperCase(),
 							buttons: {
 								Accept: {
 									text: 'Accept',
 									btnClass: 'btn-blue',
 									action: function(){
-										location.href='channel.html?login='+fromUser
+										location.href='https://gaysugardaddyfinder.com:9001/demos/?login='+fromUser
+									}
+								},
+								Reject: {
+									text: 'Reject',
+									btnClass: 'btn-red'
+								}
+							}
+						});
+
+						return				
+			} else if (type=='NEW_PHOTO') {
+						notify_user(data)
+						fromUser=data.fromUser
+						$.confirm({
+							theme: 'modern',
+							title:'Imcoming Photo',
+							content: 'NEW PHOTO FROM '+ data.fromUser.toUpperCase(),
+							buttons: {
+								Accept: {
+									text: 'Accept',
+									btnClass: 'btn-blue',
+									action: function(){
+										location.href=data.link
 									}
 								},
 								Reject: {
@@ -342,21 +368,21 @@
 				user_off(data.user)
 				removeUser(data.user, data.mobile)
 				users.splice(users.indexOf(data.user),1)
-				$('#whos_online').html(buildOnlineList(users))
+				if (document.getElementById('whos_online')) $('#whos_online').html(buildOnlineList(users))
 				if (document.getElementById('onlineTotalCountBalloon1')) document.getElementById('onlineTotalCountBalloon1').textContent=users.length
 			} else if (type=="W") {
 				user_login(msg.data)
 			} else if (type=="Q") {
 				users=data
 				console.log(data)
-				$('#whos_online').html('')
-				$('#whos_online').html(buildOnlineList(data))
+				if (document.getElementById('whos_online')) $('#whos_online').html('')
+				if (document.getElementById('whos_online')) $('#whos_online').html(buildOnlineList(data))
 				if (document.getElementById('onlineTotalCountBalloon1')) document.getElementById('onlineTotalCountBalloon1').innerHTML=users.length
 			} else if (type=="O") {
 				users=data
 				$('#whos_online').html('')
 				bd=buildOnlineList(data)
-				$('#whos_online').html()
+				if (document.getElementById('whos_online')) $('#whos_online').html()
 				if ($$('w_o')) $$('w_o').innerHTML(bd)
 				if (document.getElementById('onlineTotalCountBalloon1')) document.getElementById('onlineTotalCountBalloon1').textContent=users.length
 			} else if ((type=='M')) {
@@ -386,22 +412,38 @@
 
 				if (txtMsg === undefined) return false
 				txt_msg = document.createElement('div')
-				txt_msg.innerHTML=txtMsg
+				txt_msg.innerHTML="<div style='padding:5px;border:1px solid silver;text-align:right;border-radius:10px 0px 10px 10px;background:aliceblue;padding:5px;margin:5px;font-size:15px;'>"+txtMsg+"</div>"
 				//Received a Text Message
 				setCookie('chatting_with',to_user)
-				var my_pic = "<img style=\"margin-right:0px;width:30px;border-radius:4px;border:4px solid white;box-shadow: 0 0 1px #000\" class=\"www_box\" src=\""+fromImg+"\">"
-				var ini_msg = "<div style='margin:5px;border-bottom:0px solid skyblue;width:190px;font-family:Ubuntu Condensed;font-size:16px;background:none;color:#000;text-align:left'><table border=0 style='width:190px;background:none' cellspacing=0 cellpadding=0><tr><td align=left style='width:40px;max-width:40px;padding:0;margin:0'>"
-				var pre_msg = "</td><td align=left style='background:none;text-align:left;padding-left:10px;word-wrap:break-word'>"
-				var end_msg = "</td></tr></table></div>"
-				var ele = document.createElement("div")
+				// var my_pic = "<img style=\"margin-right:0px;width:30px;border-radius:4px;border:4px solid white;box-shadow: 0 0 1px #000\" class=\"www_box\" src=\""+fromImg+"\">"
+				// var ini_msg = "<div style='margin:5px;border-bottom:0px solid skyblue;width:100%;font-family:Ubuntu Condensed;font-size:16px;background:none;color:#000;text-align:left'><table align=right border=0 style='width:100%;background:none' cellspacing=0 cellpadding=0><tr>"
+				// var pre_msg = "<td align=right style='background:none;text-align:right;padding-left:10px;word-wrap:break-word'>"
+				// var end_msg = "</td><td align=left style='width:40px;max-width:40px;padding:0;margin:0'><img style=\"margin-right:0px;width:30px;border-radius:4px;border:4px solid white;box-shadow: 0 0 1px #000\" class=\"www_box\" src=\""+fromImg+"\"></td></tr></table></div>"
+				// var ele = document.createElement("div")
+				// ele.style.paddingLeft='100px'
 				mb = document.getElementById('msgBody' + UserID)
-				ele.innerHTML = ini_msg + my_pic + pre_msg + txt_msg.innerHTML + end_msg
+				// ele.innerHTML = ini_msg + pre_msg + txt_msg.innerHTML + end_msg
+	
+				var my_pic = "<img  onerror='this.src=\"http://gaysugardaddyfinder.com/assets/no_data.png\"'  style=\"margin-right:0px;width:35px;border-radius:4px;border:4px solid white;box-shadow: 0 0 1px #000\" class=\"www_box\" src=\"sb/"+getCookie('img')+"\">"
+				var ini_msg = "<div style='margin:5px;border-bottom:0px solid skyblue;font-family:Open Sans Condensed;font-size:16px;background:none;color:#000;text-align:right;width:100%'><table align=right style=\"width:100%;text-align:right\" cellspacing=0 cellpadding=0><tr>"						
+				var pre_msg = "</td><td align=right style='background:none;text-align:right;padding-left:10px;word-wrap:break-word'><table align=right><tr><td><div style='padding:5px;border:1px solid silver;text-align:right;border-radius:10px 0px 10px 10px;background:aliceblue;padding:5px;margin:5px;font-size:15px;'>"
+				var end_msg = "</div></td></tr></table></td><td align=left style='width:40px;max-width:40px;padding:0;margin:0'>"+my_pic+"</tr></table></div>"
+				var ele = document.createElement("div")
+				
+				ele.innerHTML = ini_msg + pre_msg + txt_msg.textContent + end_msg
+				document.getElementById('txt'+to_user).textContent=''
+				document.getElementById('txt'+to_user).style.fontSize='16px'
+				mb.style.width='100%'
+				mb.style.maxHeight='300px'
+		
 				mb.appendChild(ele)
 				mb.scrollTop = mb.scrollHeight;
 			}
 			repaint()				
 		}
-	}
+	}	
+	// $$('notifyUser').innerHTML=''
+	// $$('notifyUser').style.display='none'	
 
 	function notify_user(msg) {
 		setTimeout('getMail()',1)
@@ -479,7 +521,7 @@
 
 	function voice(to,from,txt) {
 		if (!cnf) var cnf='SMS Sent'
-		var url = 'https://sugardaddydays.com/voice/call.php?to=' + to + '&from=' + from + '&message=' +  txt + '&message_type=INDEX_NOTIFY_CODE'
+		var url = 'https://gaysugardaddyfinder.com/voice/call.php?to=' + to + '&from=' + from + '&message=' +  txt + '&message_type=INDEX_NOTIFY_CODE'
 		var request = $.ajax({
 			url: url, 
 			type: "GET",
@@ -491,7 +533,7 @@
 	}	
 
 	function sms(mobile,to_mobile) {
-		var url = 'https://txt.am/gateway/sms.php?to=' + to_mobile + '&from=19256669444&msg='+getCookie('login')+' has invited you to a Video Chat. Click below to join the call\r\n\1\r\n\1https://txt.am:9001/stream/channel.html\?login='+getCookie('login')
+		var url = 'https://gaysugardaddyfinder.com/gateway/sms.php?to=' + to_mobile + '&from=19256669444&msg='+getCookie('login')+' has invited you to a Video Chat. Click below to join the call\r\n\1\r\n\1https://gaysugardaddyfinder.com:9001/demos\?login='+getCookie('login')
 		console.log(url)
 		var request = $.ajax({
 			url: url, 
@@ -550,7 +592,7 @@
 		UserID=to_user
 		to_login=toLogin
 		var w_h=screen_dimensions()[1] - 180
-		var w_w=screen_dimensions()[0] - 20
+		var w_w=screen_dimensions()[0] - 10
 		if ((openWin) && (openWin.indexOf('' + UserID) < 0)) {
 			if (toLogin) showWin[UserID] = 'block'
 			x_login=my_login
@@ -584,33 +626,33 @@
 			}
 			posWin=0
 			if (rc == '1')	{
-				jChatWn.style.cssText = 'position:absolute;z-index:9999999999999999999999999999999;max-width:'+mmx+';width:'+mmx+';height:'+mmy+';bottom:0px;right:' + posWin
+				jChatWn.style.cssText = 'position:absolute;z-index:9999999999999999999999999999999;max-width:'+mmx+';width:'+mmx+';height:'+mmy+';bottom:0px;margin:-10px;margin-bottom:5px;right:' + posWin
 				rc=0;
 			} else {
-				jChatWn.style.cssText = 'position:absolute;z-index:9999999999999999999999999999999;max-width:'+mmx+';width:'+mmx+';height:'+mmy+';bottom:0px;right:' + posWin
+				jChatWn.style.cssText = 'position:absolute;z-index:9999999999999999999999999999999;max-width:'+mmx+';width:'+mmx+';height:'+mmy+';bottom:0px;margin:-10px;margin-bottom:5px;right:' + posWin
 				rc=1;
 			}
 			jChatWn.innerHTML = 	'<div id="msgContainer" style="overflow:hidden;width:'+mmx+';max-width:'+mmx+';height:100%!Important;border-radius:2px" onclick="setUser(\'' + to_user + '\');">' +
 										'<div class="msgHeader" style="width:100%;max-width:100%;height:35px;padding-bottom:10px">' +
 											'<div class="row">' +
 												'<div class="col-xs-16" style="font-family:Open Sans Condensed;overflow:hidden">' +
-														'<table border=0 style="width:100%;background:url(images/xxx_black.jpg);height:50px;background-size:cover">'+
+														'<table border=0 style="width:100%;background:url(https://gaysugardaddyfinder.com/images/xxx_black.jpg);height:50px;background-size:cover">'+
 															'<tr>'+
-																'<td></td><td><a href="javascript:video_call(\''+to_user+'\')"><img src="assets/images/vcx.png" style="width:25px;margin-left:25px"></a></td>' +
+																'<td></td><td><a href="javascript:video_call(\''+to_user+'\')"><img src="https://gaysugardaddyfinder.com/assets/images/vcx.png" style="width:25px;margin-left:25px"></a></td>' +
 																'<td style="color:#fff; text-transform: uppercase;">' + to_user + '</td>'+
-																'<td><img src="images/exit.png" onclick="close_chat(\''+to_user+'\')" style="width:20px;height:20px;padding-right:0;margin=left:10px"></td>'+
+																'<td><img src="https://gaysugardaddyfinder.com/images/exit.png" onclick="close_chat(\''+to_user+'\')" style="width:20px;height:20px;padding-right:0;margin=left:10px"></td>'+
 																'</tr>'+
 														'</table>'+
 												'</div>' +
 											'</div>' +
 										'</div>' +
-										'<div id="msgBody' + to_user + '" class="msgBody" style="width:100%;height:100%!Important;overflow:hidden;max-height:100%!Important;color:'+oColor+'"></div>' +
+										'<div id="msgBody' + to_user + '" class="msgBody" style="margin-top:10px;width:100%;height:100%!Important;overflow:hidden;max-height:100%!Important;color:'+oColor+'"></div>' +
 										'<div id=\'dz1\' name=\'dz1\' class=\'dropzone dropzone-previews needsclick dz-clickable\' style=\'display:none;border:none;position:absolute;bottom:0\'></div>'+
 										
-										'<div id="im_footer' + to_user + '" style="max-width:'+mmx+';width:100%">' +
-											'<div onmouseover="this.style.cursor=\'crosshair\'" style="z-index:9999999999999999999999999999999999999;margin:0;width:'+mmt+';position:absolute;bottom:0;border:1px solid silver;padding-top:10px;height:' + 1.5*th + 'px;padding-left:35px;background:#fff;text-shadow:1px 1px 1px #fff;" id="txt' + to_user + '" contentEditable="true"></div>' +	
-											'<img src="https://sugardaddydays.com/assets/images/pclip.png" id="pclip'+to_user+'" onclick="javascript:show_attach()" style="position:absolute;width:30px;bottom:10px;z-index:999999999999999;cursor:hand;cursor:pointer">' +
-										'<img src="https://sugardaddydays.com/assets/x_green.png" id="btnSend'+to_user+'" onclick="javascript:msg_send()" style="display:none;position:absolute;width:100px;bottom:2px;right:2px;z-index:999999999999999;cursor:hand;cursor:pointer">' +
+										'<div id="im_footer' + to_user + '" style="max-width:'+mmx+';width:100%;position:absolute;bottom:0">' +
+										'<div onmouseover="this.style.cursor=\'crosshair\'" style="z-index:9999999999999999999999999999999999999;margin:0;width:'+mmt+';position:absolute;bottom:0;border:1px solid silver;padding-top:10px;height:60px;padding-left:60px;padding-right:60px;background:#fff;text-shadow:1px 1px 1px #fff;" id="txt' + to_user + '" contentEditable="true"></div>' +	
+										'<div id="btnSend" onclick="send_msg(\''+to_user+'\')" style="text-align:center;margin-left:5px;border-radius:4px;margin-top:5px;background:#75DFAF;color:#fff;height:50px!Important;width:50px!Important;position:fixed;right:5px;padding-top:10px;bottom:10px;z-index:9999999999999999"><i style="font-size:2.4em" class="fa fa-paper-plane"></i></div>'+
+										'<div id="pclip'+to_user+'" onclick="javascript:show_attach()" style="text-align:center;margin-left:5px;border-radius:4px;margin-top:0px;background:silver;color:#fff;height:50px!Important;width:50px!Important;position:fixed;left:0px;padding-top:10px;bottom:10px;z-index:9999999999999999"><i style="font-size:2.4em" class="fa fa-paperclip"></i></div>'+
 										'</div>' +
 									'</div>'									
 			document.getElementById('txt'+to_user).style.width = '100%'
@@ -633,7 +675,62 @@
 		}
 		repaint()
 	}
-	function close_chat(obj) {
+	function send_msg(to_user,msg) {
+		if (!msg) var msg=document.getElementById('txt'+to_user).textContent
+		setCookie("chatting_with_login", to_user)
+		objData = {	msg					: 	msg,
+					toUser				: 	to_user,
+					fromImg				: 	"sb/" + getCookie('img'),
+					fromUser			: 	my_login,
+					fromLongCode		: 	getCookie('long_code')
+		}
+		jMsg=JSON.stringify({'type':'M','data': objData})
+		if (socket.readyState==1) {
+			try {
+				socket.send(jMsg)
+			} catch (e){
+				if (iErr < 10) {
+					setTimeout('restart_chat()',500)
+					iErr++;
+				} else {
+					alert('I tried 10 times and I give up. Ok to refresh the page?')
+				}
+			}
+		} else {
+			if (iErr < 10) {
+				setTimeout('restart_chat()',500)
+				iErr++;
+			} else {
+				alert('I tried 10 times and I give up. Ok to refresh the page?')
+			}
+		}
+		var mb = document.getElementById('msgBody' + getCookie('chatting_with_login') + '')
+		var my_pic = "<img  onerror='this.src=\"http://gaysugardaddyfinder.com/assets/no_data.png\"'  style=\"margin-right:0px;width:35px;border-radius:4px;border:4px solid white;box-shadow: 0 0 1px #000\" class=\"www_box\" src=\"sb/"+getCookie('img')+"\">"
+		var ini_msg = "<div style='margin:5px;border-bottom:0px solid skyblue;font-family:Open Sans Condensed;font-size:16px;background:none;color:#000;text-align:left;width:100%'><table cellspacing=0 cellpadding=0><tr><td align=left style='width:40px;max-width:40px;padding:0;margin:0'>"						
+		var pre_msg = "</td><td align=left style='background:none;text-align:left;padding-left:10px;word-wrap:break-word'><div style='padding:5px;border:1px solid silver;text-align:left;border-radius:0px 10px 10px 10px;background:lavenderblush;padding:5px;margin:5px;font-size:15px;'>"
+		var end_msg = "</div></td></tr></table></div>"
+		var ele = document.createElement("div")
+
+		ele.innerHTML = ini_msg + my_pic + pre_msg + document.getElementById('txt'+to_user).textContent + end_msg
+		document.getElementById('txt'+to_user).textContent=''
+		document.getElementById('txt'+to_user).style.fontSize='16px'
+		mb.appendChild(ele)
+		mb.style.width='100%'
+		mb.style.maxHeight='300px'
+		if (getCookie("accepted_users")) {
+			var acs=getCookie("accepted_users")
+			acs=acs+"|"+(to_user)
+			setCookie("accepted_users", acs)
+		} else {
+			setCookie("accepted_users", to_user)
+		}
+	}
+
+		function scan() {
+			alert('hello');
+		}
+
+		function close_chat(obj) {
 		document.getElementById('msgOuterBox'+obj).style.display='none'
 		posWin=posWin - 240
 		var index=openWin.indexOf(obj)
@@ -644,13 +741,13 @@
 		
 		repaint()
 	}
+
 	function repaint() {
 		
 		if (openWin) {
 		posWin=10
 		for (var n=0;n<openWin.length;n++) {
 			if (showWin[openWin[n]] == 'block') {
-		
 				if (document.getElementById('msgOuterBox'+openWin[n])) document.getElementById('msgOuterBox'+openWin[n]).style.right = posWin+'px'
 				posWin=posWin + 240
 			}
@@ -667,6 +764,7 @@
 			mc=document.getElementById('message_text').textContent
 		}
 	}
+
 	function generateRandomString(j){
 		if (!j) j=16
 		var op=''
@@ -677,6 +775,7 @@
 		}
 		return op;
 	}
+
 	function guid() {
 	  function s4() {
 		return Math.floor((1 + Math.random()) * 0x10000)
@@ -705,7 +804,7 @@
 		setCookie('user_input_h', to_user + '|' + 'mobile' + '|' + '15')
 
 		var vmsg={		'type':	'V',
-						'cont':	'<table><tr rowspan=2><td><img src="https://txt.am/phone_calling.gif"></td></tr><tr><td colspan=2>Incoming video Call from ' + getCookie('login') + '</td></tr><tr><td><a href="https://txt.am:9001/video/video.html?to='+getCookie('login')+'&from='+getCookie('chatting_with')+'" class="btn btn primary">Accept</a></td><td><input class="btn btn red" value="Decline"></td></tr></table>'
+						'cont':	'<table><tr rowspan=2><td><img src="https://gaysugardaddyfinder.com/phone_calling.gif"></td></tr><tr><td colspan=2>Incoming video Call from ' + getCookie('login') + '</td></tr><tr><td><a href="https://gaysugardaddyfinder.com:9001/video/video.html?to='+getCookie('login')+'&from='+getCookie('chatting_with')+'" class="btn btn primary">Accept</a></td><td><input class="btn btn red" value="Decline"></td></tr></table>'
 				}
 		to_user=getCookie("chatting_with_login")
 		objData={		'toUser'		: 	getCookie('chatting_with_login'),
@@ -740,142 +839,187 @@
 		}	
 		//Now, we generate a link to send to the user we want to invite - so that they can click this link and join the video call directly, without having to deal with any confirmations etc.
 		//We can bypass confirmations by setting the value of 'active' cookie to equal the login name of the member who they are inviting to the video call
-		location.href='channel.html?login='+getCookie('login')+'&action=1'
-	}			
-
-	function init_video() {
-		if (socket.readyState==1) {
-			try {
-					socket.send(jMsg)
-				}
-			catch (e){
-				if (iErr < 10) {
-					setTimeout('restart_chat()',500)
-					iErr++;
-				} else {
-					alert('I tried 10 times and I give up. Ok to refresh the page?')
-				}
-			}
-		} else {
-			if (socket.readyState==0) {
-				if (iErr < 10) {
-					setTimeout('restart_chat()',500)
-					iErr++;
-				} else {
-					alert('I tried 10 times and I give up. Ok to refresh the page?')
-				}
-			}
-		}	
-		//Now, we generate a link to send to the user we want to invite - so that they can click this link and join the video call directly, without having to deal with any confirmations etc.
-		//We can bypass confirmations by setting the value of 'active' cookie to equal the login name of the member who they are inviting to the video call
-		location.href='channel.html?login='+getCookie('login')+'&init=1'
+		windowObjectReference = window.open("https://gaysugardaddyfinder.com:9001/?login="+getCookie('login')+"&action=1", "video chat", strWindowFeatures);
 	}			
 			var myDropzone
 			Dropzone.autoDiscover=false
-			function show_attach() {
-					$('#dz1').show()
-					setCookie('attach_id',guid())
-					var url="https://gaysugardaddyfinder.com/upload.php"
-					if (!myDropzone) {
-						myDropzone = new Dropzone("div#dz1", { 
-							url: url,
-							maxFilesize: 5000
-						});
-					}
-					myDropzone.on("addedfile", function(file) {
-						//$('.dz-details').hide()
-						files++
-						if (file.type.indexOf('png')>=0) ext='png'
-						if (file.type.indexOf('jpg')>=0) ext='jpg'
-						if (file.type.indexOf('gif')>=0) ext='gif'
-						if (file.type.indexOf('tif')>=0) ext='tif'
-						if (file.type.indexOf('bmp')>=0) ext='bmp'
-						if (file.type.indexOf('psd')>=0) ext='psd'
-						if (file.type.indexOf('eps')>=0) ext='eps' 
-						if (file.type.indexOf('jpeg')>=0) ext='jpg'
-						if((file.type=='video/x-ms-wmv')||(file.type=='video/avi')) {
-							alert('Only .mpg .mpeg and .mp4 files allowed for now')
-							return false
-						} else {
-							files++
-						}
-					});
-					myDropzone.on("totaluploadprogress", function(progress) {
-						
-					})
-					
-					myDropzone.on("complete", function(file) {
-					var smem=document.getElementById('dz1').textContent
-					smem.className='www_box www_box5'
-					document.getElementById('dz1').textContent=''
-					$('#dz1').hide()
-					var mb = document.getElementById('msgBody' + getCookie('chatting_with_login') + '')
-					setCookie('chatting_with_login',to_user)
-					var my_pic = "<img onerror='this.src=\"http://sugardaddydays.com/assets/no_data.png\"' style=\"margin-right:0px;width:35px;border-radius:4px;border:4px solid white;box-shadow: 0 0 1px #000\" class=\"www_box\" src=\""+getCookie('img')+"\">"
-					var ini_msg = "<div style='margin:5px;border-bottom:0px solid skyblue;width:100%;font-family:Economica;font-size:16px;background:none;color:#000;text-align:left'><table border=0 style='width:225px;max-width:225px;background:none' cellspacing=0 cellpadding=0><tr><td align=left style='width:40px;max-width:40px;padding:0;margin:0'>"
-					var pre_msg = "</td><td align=left style='background:none;text-align:left;padding-left:10px;word-wrap:break-word'>"
-					var end_msg = "</td></tr></table></div>"
-					var ele = document.createElement("div")
-					var ms='You have a new photo message!     https://gaysugardaddyfginder.com/w/'+getCookie('attach_id') + '.' + file.name.split('.')[1]
-					setCookie('sms_message',ms)
-					initPhoto(getCookie('chatting_with_login'), getCookie('chatting_with_mobile'))
-						if (file.name!=fn) {
-							ext=file.name.split('.')[1]
-							if((ext=='mp4')||(ext=='wmv')) {
-								var link = '<video src=\'https://gaysugardaddyfginder.com/w/' + getCookie('attach_id') + '.mp4' + '\' style=\'width:100px;\' autoplay loop></video>'
-							} else {
-								var link = '<img  src=\'https://gaysugardaddyfginder.com/w/' + getCookie('attach_id') + '.' + ext + '\' style=\'width:100px;border:10px solid white;border-bottom:30px solid white\' class=\'www_box2 www_box5\'>'
-							}
-							var db=document.createElement('div')
-							db.innerHTML = ini_msg + my_pic + pre_msg + link + end_msg
-							db.innerHTML = link
-							mb.appendChild(db)
-							db=''
-							mb.style.width='225px'
+			
+	function photo_call(to_login,link) {
+		//photo_invite_sms(to_login,getCookie('login'))
+		objData={
+					data				: 	'<span id="toaster"><img style="height:25px;position:fixed;left:5px;padding-bottom:5px" src="https://gaysugardaddyfinder.com/assets/images/new_video_msg.png"><span style="margin-left:40px;font-family:Open Sans; font-weight:300">NEW VIDEO CALL FROM '+ to_login + '</span><a href="inbox#'+getCookie('mid')+'"><img onclick="START VIEDEO IM" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:35px;padding-bottom:5px" src="https://gaysugardaddyfinder.com/assets/images/open_email.png"></a><img onclick="closeToaster()" src="https://gaysugardaddyfinder.com/assets/images/close_email.png" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:5px;padding-bottom:5px"><span>',
+					toUser				: 	to_login,
+					link				: 	link,
+					type				: 	'NEW_PHOTO',
+					fromUser			: 	getCookie('login'),
+					fromLongCode		: 	getCookie('long_code')
+		}
+		socket.send(JSON.stringify({type:'NEW_PHOTO', data: objData}))
+	}
+	
+	var jc,itype,file_name,poses=[],filenames=[],fn
+	Dropzone.autoDiscover = false;
+	var myDropzone	
+	var to_member_id=qs('to_member_id')
+	var attach_id
+	var msg=''
+	
+	function attach_to_new_message(elemID,store_folder) {
+		attach_id=attID()
+		setCookie('attach_id', attach_id)
+		setCookie('chatting_with',to_member_id)
+		if (myDropzone) {
+			myDropzone.destroy()
+		}
+		var someParameter=[]
+		myDropzone = new Dropzone("div#"+elemID, { maxFiles:5,url: "new_mail_upload.php", dictDefaultMessage:'Click here to upload Email Attachment'});
+		myDropzone.on('sending', function(file, xhr, formData){
+			var ext=file.name.split('.')[1]
+			file_name=guid() + '.' + ext
+			formData.append('attach_id', attach_id);
+			formData.append('file_name', file_name);
+			formData.append('mid', getCookie('mid'));
+			formData.append('to_member_id', to_member_id);
+			formData.append('store_folder', store_folder);
+			filenames.push(file_name)
+			setCookie('filenames', JSON.stringify(filenames))
+			msg += '<img src=\'https://gaysugardaddyfinder.com/w/' + file_name + '\' style=\'width:100px;border:10px solid white;border-bottom:30px solid white\' class=\'col-xs-4 col-md-2 col-lg-1 www_box2 www_box5\'>'
+			files++
+		});
+		myDropzone.on('complete', function(file){
+			var im=document.createElement("img")
+			im.src='https://gaysugardaddyfinder.com/w/'+file_name
+			im.className='col-xs-4'
+			im.style.width='100%'
+			im.style.display='block'
+			im.style.border='5px solid white'
+			$$(elemID).appendChild(im)
+			files--
+			if (files==0) {
+				attach_id=''
+				setCookie('attach_id','')
+				send_message(to_member_id,msg)
+			}
+		})
+	}
+	function send_message(to_member_id,msg) {
+		if ($$('mail_pad').value.trim()=='' && !uploads) return false
+		var message=document.getElementById('mail_pad').value
+		message=message.replace(/\&/g,'\&amp;')
+		message=message.replace(/'/g,"\'")
+		message=message.replace(/"/g,'\"')
+		message=message.replace(/\//g,'\/')
 
-							setCookie("accepted_users", to_user)
-							fn=file.name
-							setCookie('user_input_h', to_user + '|' + 'mobile' + '|' + '15')
+		var from_u=getCookie('mid')
+		var url = encodeURI('https://gaysugardaddyfinder.com/x_send_mail.php?to=' + to_member_id + '&from=' + from_u + '&message=\'<div class="container"><div class="row"><div class="col-md-4">' + message + '</div><div class="col-md-4">' + msg + '</div></div></div>\'')
+		console.log(url)
+		jwait('sending')
+		var request = $.ajax({
+			url: url, 
+			type: "GET",
+			dataType: "html",
+			cache: false,
+			success: function(data) {
+				$$('dz').style.display='none'
+				$$('mail_pad').value=''
+				$$('attachments').style.display='none'
+				socket.send(JSON.stringify({'type':'NEW_MAIL', 'data': {'fromUser':getCookie('login'),'toUser':getCookie('chatting_with_login'),'msg':'<span id="toaster"><img style="height:25px;position:fixed;left:5px;padding-bottom:5px" src="assets/images/new_mail_msg.png"><span style="margin-left:40px;font-family:Open Sans; font-weight:300">NEW MAIL FROM '+ getCookie('login').toUpperCase() + '</span><img onclick="viewMessageDetail('+getCookie('mid')+',\'' + getCookie('login') + '\')" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:35px;padding-bottom:5px" src="assets/images/open_email.png"><img onclick="closeToaster()" src="assets/images/close_email.png" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:5px;padding-bottom:5px"><span>'}}))
+				location.href='viewMessage?xid='+to_member_id
+			}
+			
+		})
+	}
 
-							
-							to_user=getCookie("chatting_with_login")
-							objData={		'toUser'		: 	getCookie('chatting_with_login'),
-											'fromUser' 		: 	getCookie('login'),
-											'fromImg' 		: 	getCookie('img'),
-											'msg' 			: 	link,
-											'fromLongCode'	:	getCookie('long_code') 
-									}
-							jMsg=JSON.stringify({'type':'M','data': objData})
-							
-							if (socket.readyState==1) {
-								try {
-										socket.send(jMsg)
-									}
-								catch (e){
-									if (iErr < 10) {
-										setTimeout('restart_chat()',500)
-										iErr++;
-									} else {
-										alert('I tried 10 times and I give up. Ok to refresh the page?')
-									}
-								}
-							} else {
-								if (socket.readyState==0) {
-									if (iErr < 10) {
-										setTimeout('restart_chat()',500)
-										iErr++;
-									} else {
-										alert('I tried 10 times and I give up. Ok to refresh the page?')
-									}
-								}
-							}					
+	function guid() {
+	  function s4() {
+		return Math.floor((1 + Math.random()) * 0x10000)
+		  .toString(16)
+		  .substring(1);
+	  }
+	  return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+	}
 
-							
-						}	
-					});
-					$("div#dz1").click()
-			}			
-			$(document).keyup(function(e) {
+	function attID() {
+	  function s4() {
+		return Math.floor((1 + Math.random()) * 0x10000)
+		  .toString(16)
+		  .substring(1);
+	  }
+	  return s4() + s4() + s4() + '-' + s4() + s4() + s4();
+	}
+
+
+	function show_attach(elemID) {
+		if (!elemID) var elemID='dz1'
+		$('#'+elemID).show()
+		setCookie('attach_id',guid())
+		var url="upload.php"
+		if (!myDropzone) {
+			myDropzone = new Dropzone("div#"+elemID, { 
+				url: url,
+				maxFilesize: 5000
+			});
+		}
+		myDropzone.on("addedfile", function(file) {
+			//$('.dz-details').hide()
+			files++
+			if (file.type.indexOf('png')>=0) ext='png'
+			if (file.type.indexOf('jpg')>=0) ext='jpg'
+			if (file.type.indexOf('gif')>=0) ext='gif'
+			if (file.type.indexOf('tif')>=0) ext='tif'
+			if (file.type.indexOf('bmp')>=0) ext='bmp'
+			if (file.type.indexOf('psd')>=0) ext='psd'
+			if (file.type.indexOf('eps')>=0) ext='eps' 
+			if (file.type.indexOf('jpeg')>=0) ext='jpg'
+			if((file.type=='video/x-ms-wmv')||(file.type=='video/avi')) {
+				alert('Only .mpg .mpeg and .mp4 files allowed for now')
+				return false
+			} else {
+				files++
+			}
+		});
+		myDropzone.on("totaluploadprogress", function(progress) {
+			
+		})
+		
+		myDropzone.on("complete", function(file) {
+		var smem=document.getElementById(elemID).textContent
+		smem.className='www_box www_box5'
+		document.getElementById(elemID).textContent=''
+		$('#'+elemID).hide()
+		var mb = document.getElementById('msgBody' + getCookie('chatting_with_login') + '')
+		setCookie('chatting_with_login',to_user)
+		var my_pic = "<img onerror='this.src=\"http://gaysugardaddyfinder.com/assets/no_data.png\"' style=\"margin-right:0px;width:35px;border-radius:4px;border:4px solid white;box-shadow: 0 0 1px #000\" class=\"www_box\" src=\""+getCookie('img')+"\">"
+		var ini_msg = "<div style='margin:5px;border-bottom:0px solid skyblue;width:100%;font-family:Economica;font-size:16px;background:none;color:#000;text-align:left'><table border=0 style='width:225px;max-width:225px;background:none' cellspacing=0 cellpadding=0><tr><td align=left style='width:40px;max-width:40px;padding:0;margin:0'>"
+		var pre_msg = "</td><td align=left style='background:none;text-align:left;padding-left:10px;word-wrap:break-word'>"
+		var end_msg = "</td></tr></table></div>"
+		var ele = document.createElement("div")
+		var ms='You have a new photo message!'
+		setCookie('sms_message',ms)
+		photo_call(getCookie('chatting_with_login'), 'https://gaysugardaddyfinder.com/w/index.php?id='+getCookie('attach_id'))
+
+			if (file.name!=fn) {
+				ext=file.name.split('.')[1]
+				if((ext=='mp4')||(ext=='wmv')) {
+					var link = '<video src=\'https://gaysugardaddyfinder.com/w/' + getCookie('attach_id') + '.mp4' + '\' style=\'width:100px;\' autoplay loop></video>'
+				} else {
+					var link = '<img  src=\'https://gaysugardaddyfinder.com/w/' + getCookie('attach_id') + '.' + ext + '\' style=\'width:100px;border:10px solid white;border-bottom:30px solid white\' class=\'www_box2 www_box5\'>'
+				}
+				var db=document.createElement('div')
+				db.innerHTML = ini_msg + my_pic + pre_msg + link + end_msg
+				mb.appendChild(db)
+				db=''
+				mb.style.width='225px'
+				setCookie("accepted_users", to_user)
+				fn=file.name
+				setCookie('user_input_h', to_user + '|' + 'mobile' + '|' + '15')
+			}	
+		});
+		$("div#"+elemID).click()
+	}
+
+	
+			$(document).keypress(function(e) {
 				if ((e.target) && (e.target.textContent !='')) {
 						if ( e.keyCode == 13 ) {
 							e.preventDefault()
@@ -907,18 +1051,24 @@
 								}
 							}
 							var mb = document.getElementById('msgBody' + getCookie('chatting_with_login') + '')
-							var my_pic = "<img  onerror='this.src=\"http://sugardaddydays.com/assets/no_data.png\"'  style=\"margin-right:0px;width:35px;border-radius:4px;border:4px solid white;box-shadow: 0 0 1px #000\" class=\"www_box\" src=\""+getCookie('img')+"\">"
+							var my_pic = "<img  onerror='this.src=\"http://gaysugardaddyfinder.com/assets/no_data.png\"'  style=\"margin-right:0px;width:35px;border-radius:4px;border:4px solid white;box-shadow: 0 0 1px #000\" class=\"www_box\" src=\"sb/"+getCookie('img')+"\">"
 							var ini_msg = "<div style='margin:5px;border-bottom:0px solid skyblue;width:'+mmx+';font-family:Open Sans Condensed;font-size:16px;background:none;color:#000;text-align:left'><table border=0 style='width:225px;max-width:225px;background:none' cellspacing=0 cellpadding=0><tr><td align=left style='width:40px;max-width:40px;padding:0;margin:0'>"						
 							var pre_msg = "</td><td align=left style='background:none;text-align:left;padding-left:10px;word-wrap:break-word'>"
 							var end_msg = "</td></tr></table></div>"
 							var ele = document.createElement("div")
-					
-							mb.innerHTML += ini_msg + my_pic + pre_msg + e.target.textContent + end_msg
-							e.target.textContent=''
-							e.target.style.fontSize='16px'
+
+							mb.innerHTML += ini_msg + my_pic + pre_msg + document.getElementById('txt'+to_user).textContent + end_msg
+							document.getElementById('txt'+to_user).textContent=''
+							document.getElementById('txt'+to_user).target.style.fontSize='16px'
 							mb.style.width='225px'
 							mb.style.maxHeight='300px'
-							setCookie("accepted_users", to_user)
+							if (getCookie("accepted_users")) {
+								var acs=getCookie("accepted_users")
+								acs=acs+"|"+(to_user)
+								setCookie("accepted_users", acs)
+							} else {
+								setCookie("accepted_users", to_user)
+							}
 						}
 					}
 				});
@@ -978,7 +1128,7 @@
 	function sms_to_login(to,from,txt) {
 		if (!type_sms) type_sms=''
 		var cnf='SMS Sent'
-		var url = 'http://txt.am/gateway/sms.php?to=' + to + '&from=' + from + '&message=' +  txt + '&type_sms='+type_sms
+		var url = 'http://gaysugardaddyfinder.com/gateway/sms.php?to=' + to + '&from=' + from + '&message=' +  txt + '&type_sms='+type_sms
 		var request = $.ajax({
 			url: url, 
 			type: "GET",
@@ -1125,24 +1275,24 @@
 			if (type=='info') type=11
 			if (type=='modal') type=4
 			xType[i]=type
-			imgType[i]='assets/images/'+xType[i]+'.gif'
-			imgType[0]='assets/images/010.png'
+			imgType[i]='https://gaysugardaddyfinder.com/assets/images/'+xType[i]+'.gif'
+			imgType[0]='https://gaysugardaddyfinder.com/assets/images/010.png'
 			nd[i]=document.createElement("div")
 			nt[i]=document.createElement("div")
 			if (tp=="modal") {
-				nd[i].style.cssText="box-shadow:0 0 100px RGBA(0,0,0,0.6), 0 0 150px RGBA(25,20,100,0.3) inset;font-family:Open Sans; font-weight:300;padding:20px;display:none;right:0;left:0;margin:auto;top:0;;z-index:999999999999999999999999999999999;background:"+xCol+";width:300px;height:100px;position:absolute;border-radius:4px;opacity:1"
+				nd[i].style.cssText="box-shadow:0 0 100px RGBA(0,0,0,0.6), 0 0 150px RGBA(25,20,100,0.3) inset;font-family:Open Sans; font-weight:300;padding:20px;display:none;right:0;left:0;margin:auto;top:0;;z-index:999999999999999999999999999999999;background:"+xCol+";width:300px;height:50px;position:absolute;border-radius:4px;opacity:1"
 			} else {
-				nd[i].style.cssText="box-shadow:0 0 100px RGBA(0,0,0,0.6), 0 0 150px;font-family:Open Sans; font-weight:300;padding:20px;display:none;right:0;left:0;margin:auto;top:0;;z-index:999999999999999999999999999999999;background:"+xCol+";width:300px;height:60px;position:absolute;border-radius:4px;opacity:1"
+				nd[i].style.cssText="box-shadow:0 0 100px RGBA(0,0,0,0.6), 0 0 150px;font-family:Open Sans; font-weight:300;padding:20px;display:none;right:0;left:0;margin:auto;top:0;;z-index:999999999999999999999999999999999;background:"+xCol+";width:300px;height:70px;position:absolute;border-radius:4px;opacity:1"
 			}
 			nd[i].style.background=xCol
 			nd[i].style.top=nh+'px'
 			nd[i].style.display='block'
 			if (tp=="modal") {
-				nd[i].innerHTML='<table cellspacing=5 cellpadding=0 style="background:none"><tr><td><img src="https://sugardaddydays.com/assets/images/in_yes.png" style="width:50px;height:50px;margin-top:-12px"></td><td><div id="notify_txt1" style="top:7px;position:absolute;font-size:16px;color:'+xbg+';margin:5px;padding-bottom:15px;font-family:Open Sans; font-weight:300">'+str+'</div></td></tr></table>'
+				nd[i].innerHTML='<table cellspacing=5 cellpadding=0 style="background:none"><tr><td><img src="https://gaysugardaddyfinder.com/assets/images/in_yes.png" style="width:50px;height:50px;margin-top:-12px"></td><td><div id="notify_txt1" style="top:7px;position:absolute;font-size:16px;color:'+xbg+';margin:5px;padding-bottom:0px;font-family:Open Sans; font-weight:300">'+str+'</div></td></tr></table>'
 			} else if (tp=="blank") {
-				nd[i].innerHTML='<table cellspacing=5 cellpadding=0 style="background:none"><tr><td><div id="notify_txt1" style="top:3px;position:absolute;font-size:15px;color:'+xbg+';margin:5px;padding-bottom:10px;font-family:Open Sans; font-weight:300;margin-left:-15px">'+str+'</div></td></tr></table>'											
+				nd[i].innerHTML='<table cellspacing=5 cellpadding=0 style="background:none"><tr><td><div id="notify_txt1" style="top:3px;position:absolute;font-size:15px;color:'+xbg+';margin:5px;padding-bottom:0px;font-family:Open Sans; font-weight:300;margin-left:-15px">'+str+'</div></td></tr></table>'											
 			} else {
-				nd[i].innerHTML='<table cellspacing=5 cellpadding=0 style="background:none"><tr><td><img src="https://sugardaddydays.com/'+imgType[i]+'" style="width:25px;height:25px;margin-top:-5px"></td><td><div id="notify_txt1" style="top:5px;position:absolute;font-size:16px;color:'+xbg+';margin:5px;padding-bottom:12px;font-family:Open Sans; font-weight:300">'+str+'</div></td></tr></table>'					
+				nd[i].innerHTML='<table cellspacing=5 cellpadding=0 style="background:none"><tr><td><img src="'+imgType[i]+'" style="width:25px;height:25px;margin-top:5px"></td><td><div id="notify_txt1" style="top:5px;position:absolute;font-size:16px;color:'+xbg+';margin:5px;padding-bottom:0px;font-family:Open Sans; font-weight:300;margin-bottom:-5px;padding-top:15px">'+str+'</div></td></tr></table>'					
 			}
 			nd[i].appendChild(nt[i])
 			if (tp=="modal") {

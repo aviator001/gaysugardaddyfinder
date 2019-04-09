@@ -34,43 +34,47 @@
 				width:30px;
 				height:30px;
 			}
-.loginP {
-	font-family:Open Sans!Important;
-	font-weight:300;
-	color:maroon;
-	font-size:32px!Important;
-	text-align:center
-}
-.genderP {
-	font-family:Open Sans!Important;
-	font-weight:bold;
-	color:#333;
-	font-size:16px!Important;
-	width:100%;
-	text-align:center;
-}
-.locationP {
-	font-family:Open Sans;
-	font-weight:300;
-	color:#333;
-	font-size:21px;
-	width:100%;
-	text-align:center;
-}
-.general_infoP {
-	font-family:Open Sans;
-	font-weight:300;
-	color:#000;
-	font-size:16px;
-	width:100%;
-	text-align:left;
-	border-radius:4px;
-	background:#fcfcfc;
-	padding:10px;
-}			
-		</style>
+			.loginP {
+				font-family:Open Sans!Important;
+				font-weight:300;
+				color:maroon;
+				font-size:32px!Important;
+				text-align:center
+			}
+			.genderP {
+				font-family:Open Sans!Important;
+				font-weight:bold;
+				color:#333;
+				font-size:16px!Important;
+				width:100%;
+				text-align:center;
+			}
+			.locationP {
+				font-family:Open Sans;
+				font-weight:300;
+				color:#333;
+				font-size:21px;
+				width:100%;
+				text-align:center;
+			}
+			.general_infoP {
+				font-family:Open Sans;
+				font-weight:300;
+				color:#000;
+				font-size:16px;
+				width:100%;
+				text-align:left;
+				border-radius:4px;
+				background:#fcfcfc;
+				padding:10px;
+			}			
+	</style>
+	<script src="https://gaysugardaddyfinder.com/assets/js/custom_menu.js"></script>
+	<script src="https://gaysugardaddyfinder.com/validate.js"></script>
 	</head>
-	<body><script src="https://gaysugardaddyfinder.com/assets/js/custom_menu.js"></script>
+	<body>
+
+	<script src="https://gaysugardaddyfinder.com/includeJS.js"></script>
 	<script>
 		function $$(obj) {
 			return document.getElementById(obj)
@@ -86,6 +90,7 @@
 		}
 		setTimeout('showWait()',1)
 	</script>
+	
 	<section class="page-wrapper gray wow zoomIn" style="width:100%;text-align:center;margin-top:5px">
 	<div id="con" class="container" style="overflow:auto;background:url(https://gaysugardaddyfinder.com/assets/images/bgs.jpg) center no-repeat;background-size:cover;height:100%">
 		<div style="display:none">
@@ -166,7 +171,7 @@
 	}
 	function getLocation(type,ox) {
 		var request = $.ajax({
-			url: 'https://gaysugardaddyfinder.com/php/x_location.php?'+location.href.split('https://gaysugardaddyfinder.com/')[1],
+			url: 'https://gaysugardaddyfinder.comx_location.php?'+location.href.split('https://gaysugardaddyfinder.com/')[1],
 			type: "GET",
 			dataType: "html",
 			cache: false,
@@ -188,6 +193,7 @@
 		$$('tt3').innerHTML='<span style="font-size:24px"><b>1</b> of ' + smids.length+'</span>'
 	}
 	var profileBatchCount,ur,currUR,urs=[],prevEl
+	var wh=window_height()*1
 	function loadProfiles(no) {
 		ctr=0
 		var type=qs('type')
@@ -222,36 +228,53 @@
 				for (var i=0;i<profileBatchCount;i++) {
 					str=''
 						if (data[i]) {
+							setCookie('chatting_with_login',data[i].login)
+							setCookie('chatting_with',data[i].id)
+							var currEl=$$('p'+data[i].id)
 							var general_info='No Profile Text'
 							if (data[i].general_info) general_info=data[i].general_info.substr(0,50)
-							str+=	'<div class="col-md-4 col-sm-4 col-xs-12 www_box" style="background:#f0f0f0;height:430px;display:;width:100%;max-width:350px;position:fixed;left:0;right:0;margin:auto;padding:0;margin-top:30px">'
-							str+=	'	<div class="thumbbox1" style="padding:0;background:#f0f0f0;">'
+							str+=	'<div class="col-md-4 col-sm-4 col-xs-12" style="width:100%;max-width:100%;position:fixed;left:0;right:0;margin:auto;padding:0;margin-top:25px">'
+							str+=	'	<div class="thumbbox1" style="padding:0;background:#f0f0f0;;max-width:500px;margin:auto">'
 							str+=	'		<div class="team-thumb overlay-image view-overlay" style="background:white;border:none">'
-							str+=	'			<img onerror="this.src=\'https://gaysugardaddyfinder.com/assets/images/no_photo.png\'" id="imgProfile'+i+'" onclick="view_img(this)" alt=""  style="width:350px;height:400px">'
+							str+=	'			<img onerror="this.src=\'assets/images/no_photo.png\'" id="imgProfile'+i+'" onclick="view_img(this)" alt="" style="min-height:'+(window_height()-300)+'px'+';max-height:'+(window_height()-300)+'px'+';max-width:500px;min-width:500px">'
 							str+=	'		</div>'
-							str+=	'		<div class="www_box2" style="background:#f0f0f0;min-height:180px;position:fixed;top:410px;width:350px">'
-							str+=	'		<div id="profileText'+i+'" class="team-info">'
-							str+=	'			<div id="login'+i+'" class="loginP">'+data[i].login.toUpperCase().substr(0,10)+'</div>'
-							str+=	'			<div class="genderP">'
-							str+=	'				<span id="gender'+i+'">'+data[i].gender.toUpperCase()+'</span><span id="age1">'+' AGE: '+data[i].age+'</span>'
+							str+=	'		<div style="left:0;right:0;position:;background:#f0f0f0;min-height:180px;width:100%;max-width:500px;margin:auto;padding-top:25px">'
+							str+=	'			<div id="profileText'+i+'" class="team-info">'
+							str+=	'				<div id="login'+i+'" class="loginP">'+data[i].login.toUpperCase().substr(0,10)+'</div>'
+							str+=	'				<div class="genderP">'
+							str+=	'					<span id="gender'+i+'">'+data[i].gender.toUpperCase()+'</span><span id="age1">'+' AGE: '+data[i].age+'</span>'
+							str+=	'				</div>'
+							str+=	'				<div id="location'+i+'" class="locationP">'+data[i].location.toUpperCase().substr(0,15)+'</div>'
+							str+=	'				<div id="rating'+i+'" style="display:none;margin-top:10px;margin-bottom:10px;">'
+							str+=	'					<i class="fa fa-star" style="color:gold;font-size:1.5em;padding-right:5px"></i>'
+							str+=	'					<i class="fa fa-star-o" style="font-size:1.5em;padding-right:5px"></i>'
+							str+=	'					<i class="fa fa-star-o" style="font-size:1.5em;padding-right:5px"></i>'
+							str+=	'					<i class="fa fa-star-o" style="font-size:1.5em;padding-right:5px"></i>'
+							str+=	'					<i class="fa fa-star-o" style="font-size:1.5em;padding-right:5px"></i>'
+							str+=	'				</div>'
+							str+=	'				<div class="team-social" style="">'
+							str+=	'					<a href="javascript:initMsg(\''+data[i].login+'\')"><i class="fa fa-comment-o" style="width:60px;height:60px;padding:20px;border-radius:40px;background:;background-size:60px 60px;font-size:1.8em;color:silver;margin-left:10px;text-shadow:inset 0 0 10px #000"></i></a>'
+							str+=	'					<a href="javascript:send_mail('+data[i].id+')"><i class="fa fa-envelope-o" style="width:60px;height:60px;padding:20px;border-radius:40px;background:;background-size:60px 60px;font-size:1.8em;color:silver;margin-left:10px;text-shadow:inset 0 0 10px #000"></i></a>'
+							str+=	'					<a href="javascript:toggle_favs()" style="text-decoration:none"><i id="fav'+data[i].id+'" class="fa fa-heart-o"  style="width:60px;height:60px;padding:20px;border-radius:40px;background:;background-size:60px 60px;font-size:1.8em;color:silver;margin-left:10px;text-shadow:inset 0 0 10px #000"></i></a>'
+							str+=	'					<a href="javascript:video_call(\''+data[i].login+'\')"><i class="fa fa-video-camera" style="width:60px;height:60px;padding:20px;border-radius:40px;background:;background-size:60px 60px;font-size:1.8em;color:silver;margin-left:10px;text-shadow:inset 0 0 10px #000"></i></a>'
+							str+=	'				</div>'
+							str+=	'				<div style="width:100%;position:absolute;height:100px;background:;bottom:50px;max-width:500px;margin:auto">'
+							str+=	'					<table style="width:100%;max-width:500px">'
+							str+=	'						<tr>'
+							str+=	'							<td style="width:25%;text-align:center">'
+							str+=	'								<a href="javascript:dislike(\''+'p'+data[i].id+'\')"><img id="no" src="https://gaysugardaddyfinder.com/assets/images/rest_prev.png" style="width:50px"></a>'
+							str+=	'							</td>'
+							str+=	'							<td style="width:50%;text-align:center">'
+							str+=	'							</td>'
+							str+=	'							<td style="width:25%;text-align:center">'
+							str+=	'								<a href="javascript:like(\''+'p'+data[i].id+'\')"><img id="yes" src="https://gaysugardaddyfinder.com/assets/images/rest_next.png" style="width:50px"></a>'
+							str+=	'							</td>'
+							str+=	'						</tr>'
+							str+=	'					</table>'
+							str+=	'				</div>'
 							str+=	'			</div>'
-							str+=	'			<div id="location'+i+'" class="locationP">'+data[i].location.toUpperCase().substr(0,15)+'</div>'
-							str+=	'			<div id="rating'+i+'" style="margin-top:10px;margin-bottom:10px;">'
-							str+=	'				<i class="fa fa-star" style="color:gold;font-size:1.5em;padding-right:5px"></i>'
-							str+=	'				<i class="fa fa-star-o" style="font-size:1.5em;padding-right:5px"></i>'
-							str+=	'				<i class="fa fa-star-o" style="font-size:1.5em;padding-right:5px"></i>'
-							str+=	'				<i class="fa fa-star-o" style="font-size:1.5em;padding-right:5px"></i>'
-							str+=	'				<i class="fa fa-star-o" style="font-size:1.5em;padding-right:5px"></i>'
-							str+=	'		</div>'
-							<!-- str+=	'		<img id="yes" src="https://gaysugardaddyfinder.com/assets/images/in_yes.png" style="margin-right:10px;width:65px;display:"><img id="no" src="https://gaysugardaddyfinder.com/assets/images/in_no.png" style="margin-left:10px;width:65px;display:"></div>' -->
-							str+=	'		<div class="team-social" style="position:absolute;margin-top:5px;background:#f0f0f0;height:95px;width:100%;margin-top:-5px">'
-							str+=	'			<a href="javascript:initMsg(\''+data[i].login+'\')"><i class="fa fa-comment-o" style="width:70px;height:70px;padding:20px;border-radius:40px;background:url(https://gaysugardaddyfinder.com/assets/white_button.png);background-size:70px 70px;font-size:2em;color:silver;margin-left:10px;text-shadow:inset 0 0 10px #000"></i></a>'
-							str+=	'			<a href="javascript:send_mail('+data[i].id+')"><i class="fa fa-envelope-o" style="width:70px;height:70px;padding:20px;border-radius:40px;background:url(https://gaysugardaddyfinder.com/assets/white_button.png);background-size:70px 70px;font-size:2em;color:silver;margin-left:10px;text-shadow:inset 0 0 10px #000"></i></a>'
-							str+=	'			<a href="javascript:toggle_favs()" style="text-decoration:none"><i id="fav'+data[i].id+'" class="fa fa-heart-o"  style="width:70px;height:70px;padding:20px;border-radius:40px;background:url(https://gaysugardaddyfinder.com/assets/white_button.png);background-size:70px 70px;font-size:2em;color:silver;margin-left:10px;text-shadow:inset 0 0 10px #000"></i></a>'
-							str+=	'			<a href="javascript:video_call(\''+data[i].login+'\')"><i class="fa fa-video-camera" style="width:70px;height:70px;padding:20px;border-radius:40px;background:url(https://gaysugardaddyfinder.com/assets/white_button.png);background-size:70px 70px;font-size:2em;color:silver;margin-left:10px;text-shadow:inset 0 0 10px #000"></i></a>'
 							str+=	'		</div>'
 							str+=	'	</div>'
-							str+=	'</div>'
 							str+=	'</div>'
 							id=data[i].id
 							ur=data[i].user_rights
@@ -278,7 +301,8 @@
 					} else {
 						console.log('err')
 					}
-					
+					$$("imgProfile"+i).style.maxHeight=(wh-300)+'px'
+					$$("imgProfile"+i).style.minHeight=(wh-300)+'px'
 				}
 				nextMID = Math.min.apply(Math, mids)
 				setCookie('nextMID',nextMID)
@@ -292,6 +316,7 @@
 	}
 	var objData=[]
 	function video_call(to_login) {
+		video_invite_sms(to_login,getCookie('login'))
 		objData={
 					data				: 	'<span id="toaster"><img style="height:25px;position:fixed;left:5px;padding-bottom:5px" src="https://gaysugardaddyfinder.com/assets/images/new_video_msg.png"><span style="margin-left:40px;font-family:Open Sans; font-weight:300">NEW VIDEO CALL FROM '+ to_login + '</span><a href="inbox#'+getCookie('mid')+'"><img onclick="START VIEDEO IM" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:35px;padding-bottom:5px" src="https://gaysugardaddyfinder.com/assets/images/open_email.png"></a><img onclick="closeToaster()" src="https://gaysugardaddyfinder.com/assets/images/close_email.png" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:5px;padding-bottom:5px"><span>',
 					toUser				: 	to_login,
@@ -300,11 +325,13 @@
 					fromLongCode		: 	getCookie('long_code')
 		}
 		socket.send(JSON.stringify({type:'NEW_VIDEO', data: objData}))
-		location.href='channel.html?login='+getCookie('login')+'&action=1'
+		location.href='https://txt.am:9001/demos/?login='+getCookie('login')+'&action=1'
 		console.log(objData)
 	}
+	
+
 	function video_invite_sms(to_login, from_login) {
-		$.dialog({url:'https://gaysugardaddyfinder.com/sendSMS.php?to_login='+to_login+'&from_login='+from_login+'&from_long_code='+getCookie('long_code'),success:function(data){console.log(data);location.href='https://gaysugardaddyfinder.com/channel?login='+getCookie('login')+'&action=1'}})
+		$.dialog({url:'https://gaysugardaddyfinder.com/sendSMS.php?to_login='+to_login+'&from_login='+from_login+'&from_long_code='+getCookie('long_code'),success:function(data){console.log(data);location.href='https://gaysugardaddyfinder.com/channel.html?login='+getCookie('login')+'&action=1'}})
 	}
 	
 	function toggle_favs() {
@@ -357,6 +384,9 @@
 
 	var cycle,tmrY,tmrN,scale
 	function like(el) {
+		if (typeof el !== "object") {
+			el=$$(el)
+		}
 		add_hot_list(currMID,'CLICKED_YES')
 		scale=2
 		if ($$('yes')) $$('yes').style.transform='scale('+scale+')'
@@ -372,6 +402,7 @@
 		if (currUR==undefined) currUR = Math.min.apply(Math, urs)
 		add_hot_list(currMID,'VIEWED_PROFILE')
 		el.className='animated rollOut'
+		
 		if (ctr==(profileBatchCount-2)) load_next()
 			else ctr++
 	}
@@ -398,6 +429,7 @@
 		if (currUR==undefined) currUR = Math.min.apply(Math, urs)
 		add_hot_list(currMID,'VIEWED_PROFILE')
 		el.className='animated slideLeft'
+		el.style.display='none'
 		if (ctr==(profileBatchCount-2)) load_next()
 			else ctr++
 	}
